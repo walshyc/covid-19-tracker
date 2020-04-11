@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalState";
 import { CountryPicker } from "./CountryPicker";
 
 export const CountryForm = () => {
-  const { countries, setCountry, getCountries } = useContext(GlobalContext);
+  const { setCountry, getCountries, countries } = useContext(GlobalContext);
 
   const handleChange = (e) => {
     setCountry(e.target.value);
@@ -14,20 +14,30 @@ export const CountryForm = () => {
     // eslint-disable-next-line
   }, []);
 
+
+
   // githubContext.repos.map(repo => <RepoItem repo={repo} key={repo.id}></RepoItem>)
 
   return (
     <>
-      <form>
+    <p></p>
+      <form className="pt-3">
         <div className="form-group">
-          <label htmlFor="country-selector">Select a Country</label>
           <select
             id="country-selector"
             className="form-control"
             onChange={handleChange}
           >
+            <option value="" defaultValue>
+              Select a Country
+            </option>
             {countries.map((c) => {
-              return <CountryPicker country={c}></CountryPicker>;
+              return (
+                <CountryPicker
+                  key={c.countryInfo._id}
+                  country={c}
+                ></CountryPicker>
+              );
             })}
           </select>
         </div>

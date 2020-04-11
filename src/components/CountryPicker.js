@@ -1,13 +1,9 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React from "react";
 
-export const CountryPicker = ({country}) => {
-  const { nation} = useContext(GlobalContext);
-
-
+export const CountryPicker = ({ country }) => {
   return (
     <>
-      <option value={country}>{country}</option>
+      <option value={country.countryInfo.iso2}>{country.country}</option>
     </>
   );
 };

@@ -1,35 +1,25 @@
-import React, { Component, useContext, useEffect } from "react";
-import moment from "moment";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
-import { Title } from "./components/Title";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 import { GlobalProvider } from "./context/GlobalState";
 import { Table } from "./components/Table";
 import { CountryForm } from "./components/CountryForm";
-import { GlobalContext } from "./context/GlobalState";
 
 export default function App() {
-  const { nation, loading, setCountry, getCountries } = useContext(
-    GlobalContext
-  );
-
-
-  // increaseCalc(newNum, totalNum) {
-  //   const oldNum = totalNum - newNum;
-  //   const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed(2);
-  //   return increase;
-  // }
-
   return (
     <GlobalProvider>
-      <div className="App">
-        <Navbar></Navbar>
-        <div className="container">
-          <Title></Title>
-          <CountryForm></CountryForm>
-          <Table></Table>
+      <Router>
+        <div className="App">
+          <Navbar></Navbar>
+          <div className="container">
+            <CountryForm></CountryForm>
+            <Table></Table>
+          </div>
+          <Footer></Footer>
         </div>
-      </div>
+      </Router>
     </GlobalProvider>
   );
 }

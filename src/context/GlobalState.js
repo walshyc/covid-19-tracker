@@ -3,17 +3,12 @@ import AppReducer from "./AppReducer";
 import axios from "axios";
 
 const initialState = {
-  nation: {
-    country: "Ireland",
-    TotalConfirmed: "8089",
-    TotalDeaths: "287",
-    NewConfirmed: "1515",
-    NewDeaths: "24",
-    casesIncrease: "23.05",
-    deathsIncrease: "9.13",
-    lastUpdated: "",
+  nation: { countryInfo: { iso2: "" }, country: "" },
+  increase: {
+    cases: "",
+    deaths: "",
   },
-  countries: ['ireland', 'england'],
+  countries: [],
   loading: true,
 };
 
@@ -23,53 +18,60 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   const setCountry = async (country) => {
+    setLoading();
     const requestOptions = {
       method: "GET",
       redirect: "follow",
     };
 
     const res = await axios.get(
-      `https://api.covid19api.com/summary`,
+      `https://corona.lmao.ninja/countries/${country}`,
       requestOptions
     );
     let selectedCountry;
     const countries = res.data.Countries;
+    console.log(res.data);
 
-    countries.map((nation) => {
-      if (nation.Country === country) {
-        selectedCountry = nation;
-      }
-    });
+    // countries.map((nation) => {
+    //   if (nation.Country === country) {
+    //    selectedCountry = nation;
+    //   }
+    //   return selectedCountry
+    // });
 
     dispatch({
       type: "SET_COUNTRY",
-      payload: selectedCountry,
+      payload: res.data,
     });
   };
+
   const getCountries = async () => {
+    setLoading();
     const requestOptions = {
       method: "GET",
       redirect: "follow",
     };
 
     const res = await axios.get(
-      `https://api.covid19api.com/summary`,
+      `https://corona.lmao.ninja/countries?sort=country`,
       requestOptions
     );
 
-    const countries = res.data.Countries;
+    const countriesList = res.data;
+    console.log(res.data);
+
     let countriesArr = [];
-    countries.map((country) => {
-      const countryName = country.Country;
-      countriesArr.push(countryName);
+    countriesList.map((c) => {
+      countriesArr.push(c.country);
     });
-    console.log(countriesArr)
 
     dispatch({
       type: "GET_COUNTRIES",
-      payload: countriesArr,
+      payload: res.data,
     });
   };
+
+  const setLoading = () => dispatch({ type: "SET_LOADING" });
 
   return (
     <GlobalContext.Provider
@@ -79,6 +81,7 @@ export const GlobalProvider = ({ children }) => {
         countries: state.countries,
         getCountries,
         setCountry,
+        setLoading,
       }}
     >
       {children}
