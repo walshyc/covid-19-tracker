@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { CountryData } from "./CountryData";
-import ReactCountryFlag from "react-country-flag";
 import Spinner from "./layout/Spinner";
 import FlagIcon from './layout/FlagIcon.js'
 
@@ -12,7 +11,6 @@ export const Table = () => {
     return <Spinner></Spinner>;
   }
 
-  console.log(nation)
   return (
     <>
       <table className="table table-hover">

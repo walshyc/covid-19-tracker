@@ -28,17 +28,6 @@ export const GlobalProvider = ({ children }) => {
       `https://corona.lmao.ninja/countries/${country}`,
       requestOptions
     );
-    let selectedCountry;
-    const countries = res.data.Countries;
-    console.log(res.data);
-
-    // countries.map((nation) => {
-    //   if (nation.Country === country) {
-    //    selectedCountry = nation;
-    //   }
-    //   return selectedCountry
-    // });
-
     dispatch({
       type: "SET_COUNTRY",
       payload: res.data,
@@ -56,14 +45,6 @@ export const GlobalProvider = ({ children }) => {
       `https://corona.lmao.ninja/countries?sort=country`,
       requestOptions
     );
-
-    const countriesList = res.data;
-    console.log(res.data);
-
-    let countriesArr = [];
-    countriesList.map((c) => {
-      countriesArr.push(c.country);
-    });
 
     dispatch({
       type: "GET_COUNTRIES",

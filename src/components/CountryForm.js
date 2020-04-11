@@ -34,7 +34,7 @@ export const CountryForm = () => {
             {countries.map((c) => {
               return (
                 <CountryPicker
-                  key={c.countryInfo._id}
+                  key={c.country}
                   country={c}
                 ></CountryPicker>
               );
