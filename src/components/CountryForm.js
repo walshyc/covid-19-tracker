@@ -3,10 +3,11 @@ import { GlobalContext } from "../context/GlobalState";
 import { CountryPicker } from "./CountryPicker";
 
 export const CountryForm = () => {
-  const { setCountry, getCountries, countries } = useContext(GlobalContext);
+  const { setCountry, getCountries, countries, nation } = useContext(GlobalContext);
 
   const handleChange = (e) => {
     setCountry(e.target.value);
+
   };
   useEffect(() => {
     getCountries();
@@ -28,7 +29,7 @@ export const CountryForm = () => {
             className="form-control"
             onChange={handleChange}
           >
-            <option value="" defaultValue>
+            <option  id='noCountry'  defaultValue >
               Select a Country
             </option>
             {countries.map((c) => {

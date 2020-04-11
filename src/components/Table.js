@@ -10,6 +10,10 @@ export const Table = () => {
   if (loading) {
     return <Spinner></Spinner>;
   }
+  else if (nation.country === ""){
+
+    return ''
+  }
 
   return (
     <>
@@ -17,10 +21,10 @@ export const Table = () => {
         <thead>
           <tr className="table-light">
             <th scope="col">
-              {nation.Country === "" ? (
+              {nation.country === "" ? (
                 ""
               ) : (
-                <span className={`flag-icon flag-icon-${nation.countryInfo.iso2.toLowerCase()} flag-icon-lg`}></span>
+                <span className={nation.countryInfo.iso2 === null ? '':`flag-icon flag-icon-${nation.countryInfo.iso2.toLowerCase()} flag-icon-lg`}></span>
               )}
             </th>
             <th scope="col">Total</th>
