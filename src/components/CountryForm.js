@@ -29,7 +29,7 @@ export const CountryForm = () => {
             className="form-control"
             onChange={handleChange}
           >
-            <option  id='noCountry'  defaultValue >
+            <option disabled={nation.country !== '' ? true : null} id='noCountry'  defaultValue >
               Select a Country
             </option>
             {countries.map((c) => {
