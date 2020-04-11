@@ -17,6 +17,7 @@ export const CountryData = ({ nation }) => {
             ? ""
             : `${increaseCalc(nation.todayCases, nation.cases)}%`}
         </td>
+        <td>{nation.casesPerOneMillion}</td>
       </tr>
       <tr>
         <th scope="row">Deaths</th>
@@ -27,31 +28,16 @@ export const CountryData = ({ nation }) => {
             ? ""
             : `${increaseCalc(nation.todayDeaths, nation.deaths)}%`}
         </td>
-      </tr>
-      <tr>
-        <th scope="row">Cases Per Million</th>
-        <td>{nation.casesPerOneMillion}</td>
-        <td></td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <th scope="row">Deaths Per Million</th>
         <td>{nation.deathsPerOneMillion}</td>
-        <td></td>
-        <td></td>
       </tr>
+ 
+
       <tr>
         <th scope="row">Tests</th>
         <td>{nation.tests}</td>
         <td></td>
         <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Tests Per Million</th>
         <td>{nation.testsPerOneMillion}</td>
-        <td></td>
-        <td></td>
       </tr>
     </>
   );

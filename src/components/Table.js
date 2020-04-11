@@ -30,6 +30,7 @@ export const Table = () => {
             <th scope="col">Total</th>
             <th scope="col">New</th>
             <th scope="col">Increase</th>
+            <th scope="col">Per Million</th>
           </tr>
         </thead>
         <tbody>
