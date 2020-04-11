@@ -1,4 +1,5 @@
 import React from "react";
+import NumberFormat from 'react-number-format';
 
 export const CountryData = ({ nation }) => {
   const increaseCalc = (newNum, totalNum) => {
@@ -10,34 +11,34 @@ export const CountryData = ({ nation }) => {
     <>
       <tr>
         <th scope="row">Cases</th>
-        <td>{nation.cases}</td>
-        <td>{nation.todayCases}</td>
+        <td><NumberFormat value={nation.cases} displayType={'text'} thousandSeparator={true} /></td>
+        <td><NumberFormat value={nation.todayCases} displayType={'text'} thousandSeparator={true} /></td>
         <td>
           {isNaN(increaseCalc(nation.todayCases, nation.cases))
             ? ""
             : `${increaseCalc(nation.todayCases, nation.cases)}%`}
         </td>
-        <td>{nation.casesPerOneMillion}</td>
+        <td><NumberFormat value={nation.casesPerOneMillion} displayType={'text'} thousandSeparator={true} /></td>
       </tr>
       <tr>
         <th scope="row">Deaths</th>
-        <td>{nation.deaths}</td>
-        <td>{nation.todayDeaths}</td>
+        <td><NumberFormat value={nation.deaths} displayType={'text'} thousandSeparator={true} /></td>
+        <td><NumberFormat value={nation.todayDeaths} displayType={'text'} thousandSeparator={true} /></td>
         <td>
           {isNaN(increaseCalc(nation.todayDeaths, nation.deaths))
             ? ""
             : `${increaseCalc(nation.todayDeaths, nation.deaths)}%`}
         </td>
-        <td>{nation.deathsPerOneMillion}</td>
+        <td><NumberFormat value={nation.deathsPerOneMillion} displayType={'text'} thousandSeparator={true} /></td>
       </tr>
  
 
       <tr>
         <th scope="row">Tests</th>
-        <td>{nation.tests}</td>
+        <td><NumberFormat value={nation.tests} displayType={'text'} thousandSeparator={true} /></td>
         <td></td>
         <td></td>
-        <td>{nation.testsPerOneMillion}</td>
+        <td><NumberFormat value={nation.testsPerOneMillion} displayType={'text'} thousandSeparator={true} /></td>
       </tr>
     </>
   );
