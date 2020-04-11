@@ -45,10 +45,11 @@ export const GlobalProvider = ({ children }) => {
       `https://corona.lmao.ninja/countries?sort=country`,
       requestOptions
     );
-
+    const data = res.data.reverse()
+      console.log(data)
     dispatch({
       type: "GET_COUNTRIES",
-      payload: res.data,
+      payload: data,
     });
   };
 
