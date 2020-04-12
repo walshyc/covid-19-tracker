@@ -10,6 +10,7 @@ const initialState = {
   },
   countries: [],
   loading: true,
+  global:''
 };
 
 export const GlobalContext = createContext(initialState);
@@ -25,11 +26,28 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://corona.lmao.ninja/countries/${country}`,
+      `https://corona.lmao.ninja/v2/countries/${country}`,
       requestOptions
     );
     dispatch({
       type: "SET_COUNTRY",
+      payload: res.data,
+    });
+  };
+
+  const getGlobalData = async () => {
+    setLoading();
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    const res = await axios.get(
+      `https://corona.lmao.ninja/v2/all`,
+      requestOptions
+    );
+    dispatch({
+      type: "GET_GLOBAL",
       payload: res.data,
     });
   };
@@ -42,14 +60,12 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://corona.lmao.ninja/countries?sort=country`,
+      `https://corona.lmao.ninja/v2/countries?sort=-country`,
       requestOptions
     );
-    const data = res.data.reverse()
-      console.log(data)
     dispatch({
       type: "GET_COUNTRIES",
-      payload: data,
+      payload: res.data,
     });
   };
 
@@ -61,9 +77,11 @@ export const GlobalProvider = ({ children }) => {
         nation: state.nation,
         loading: state.loading,
         countries: state.countries,
+        global: state.global,
         getCountries,
         setCountry,
         setLoading,
+        getGlobalData
       }}
     >
       {children}

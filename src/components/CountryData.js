@@ -6,6 +6,7 @@ export const CountryData = ({ nation }) => {
   const increaseCalc = (newNum, totalNum) => {
     const oldNum = totalNum - newNum;
     const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed(2);
+    console.log(typeof increase)
     return increase;
   };
 
@@ -16,9 +17,9 @@ export const CountryData = ({ nation }) => {
       <tr>
         <th scope="row">Cases</th>
         <td><NumberFormat value={nation.cases} displayType={'text'} thousandSeparator={true} /></td>
-        <td><NumberFormat value={nation.todayCases} displayType={'text'} thousandSeparator={true} /></td>
+        <td>{nation.todayCases === 0? '':<NumberFormat value={nation.todayCases} displayType={'text'} thousandSeparator={true} />}</td>
         <td>
-          {isNaN(increaseCalc(nation.todayCases, nation.cases))
+          {isNaN(increaseCalc(nation.todayCases, nation.cases)) || increaseCalc(nation.todayCases, nation.cases) === '0.00'
             ? ""
             : `${increaseCalc(nation.todayCases, nation.cases)}%`}
         </td>
@@ -27,9 +28,9 @@ export const CountryData = ({ nation }) => {
       <tr>
         <th scope="row">Deaths</th>
         <td><NumberFormat value={nation.deaths} displayType={'text'} thousandSeparator={true} /></td>
-        <td><NumberFormat value={nation.todayDeaths} displayType={'text'} thousandSeparator={true} /></td>
+        <td>{nation.todayDeaths === 0? '':<NumberFormat value={nation.todayDeaths} displayType={'text'} thousandSeparator={true} />}</td>
         <td>
-          {isNaN(increaseCalc(nation.todayDeaths, nation.deaths))
+          {isNaN(increaseCalc(nation.todayDeaths, nation.deaths)) || increaseCalc(nation.todayDeaths, nation.deaths) === '0.00'
             ? ""
             : `${increaseCalc(nation.todayDeaths, nation.deaths)}%`}
         </td>

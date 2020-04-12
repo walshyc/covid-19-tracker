@@ -5,6 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import { GlobalProvider } from "./context/GlobalState";
 import { Table } from "./components/Table";
+import { GlobalCard } from "./components/GlobalCard";
 import { CountryForm } from "./components/CountryForm";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <div className="App">
           <Navbar></Navbar>
           <div className="container">
+            <GlobalCard></GlobalCard>
             <CountryForm></CountryForm>
             <Table></Table>
           </div>

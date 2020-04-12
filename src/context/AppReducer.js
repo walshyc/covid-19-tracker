@@ -12,6 +12,12 @@ export default (state, action) => {
         countries: action.payload,
         loading: false,
       };
+      case "GET_GLOBAL":
+        return {
+          ...state,
+          global: action.payload,
+          loading: false
+        }
     case "SET_LOADING":
       return {
         ...state,
