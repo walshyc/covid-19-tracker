@@ -22,7 +22,7 @@ export const CountryForm = () => {
   return (
     <>
     <p></p>
-      <form className="pt-3">
+      <form>
         <div className="form-group">
           <select
             id="country-selector"
