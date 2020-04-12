@@ -160,7 +160,7 @@ export const CountryInfo = ({ nation }) => {
                 <small className="muted-text">Cases Per Million</small>
                 <br />
                 <div className="text-bolder text-primary">
-                  {nation.casesPerOneMillion}
+                <NumberFormat value={nation.casesPerOneMillion} displayType={'text'} thousandSeparator={true} />
                 </div>
               </h6>
             </div>
@@ -169,7 +169,7 @@ export const CountryInfo = ({ nation }) => {
                 <small className="muted-text">Deaths Per Million</small>
                 <br />
                 <div className="text-bolder text-primary">
-                  {nation.deathsPerOneMillion}
+                <NumberFormat value={nation.casesPerOneMillion} displayType={'text'} thousandSeparator={true} />
                 </div>
               </h6>
             </div>
@@ -178,7 +178,7 @@ export const CountryInfo = ({ nation }) => {
                 <small className="muted-text">Tests Per Million</small>
                 <br />
                 <div className="text-bolder text-primary">
-                  {nation.testsPerOneMillion}
+                <NumberFormat value={nation.testsPerOneMillion} displayType={'text'} thousandSeparator={true} />
                 </div>
               </h6>
             </div>

@@ -34,7 +34,7 @@ export const CountryData = ({ nation }) => {
             ? ""
             : `${increaseCalc(nation.todayDeaths, nation.deaths)}%`}
         </td>
-        <td><NumberFormat value={nation.deathsPerOneMillion} displayType={'text'} thousandSeparator={true} /></td>
+        <td><NumberFormat value={nation.casesPerOneMillion} displayType={'text'} thousandSeparator={true} /></td>
       </tr>
  
 
