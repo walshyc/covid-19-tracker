@@ -169,7 +169,7 @@ export const CountryInfo = ({ nation }) => {
                 <small className="muted-text">Deaths Per Million</small>
                 <br />
                 <div className="text-bolder text-primary">
-                <NumberFormat value={nation.casesPerOneMillion} displayType={'text'} thousandSeparator={true} />
+                <NumberFormat value={nation.deathsPerOneMillion} displayType={'text'} thousandSeparator={true} />
                 </div>
               </h6>
             </div>
