@@ -8,7 +8,6 @@ export const CountryInfo = ({ nation }) => {
   const increaseCalc = (newNum, totalNum) => {
     const oldNum = totalNum - newNum;
     const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed();
-    console.log(typeof increase);
     return increase;
   };
 

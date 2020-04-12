@@ -13,7 +13,8 @@ const initialState = {
   global: "",
   globalCases:[],
   globalDeaths:[],
-  globalTests:[]
+  globalTests:[],
+  globalTestsPerMillion:[]
 };
 
 export const GlobalContext = createContext(initialState);
@@ -71,6 +72,11 @@ export const GlobalProvider = ({ children }) => {
       payload: res.data,
     });
   };
+  const increaseCalc = (newNum, totalNum) => {
+    const oldNum = totalNum - newNum;
+    const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed();
+    return increase;
+  };
 
  
   const setLoading = () => dispatch({ type: "SET_LOADING" });
@@ -85,10 +91,12 @@ export const GlobalProvider = ({ children }) => {
         globalCases: state.globalCases,
         globalDeaths: state.globalDeaths,
         globalTests: state.globalTests,
+        globalTestsPerMillion: state.globalTestsPerMillion,
         getCountries,
         setCountry,
         setLoading,
         getGlobalData,
+        increaseCalc
       }}
     >
       {children}

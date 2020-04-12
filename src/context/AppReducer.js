@@ -22,21 +22,28 @@ export default (state, action) => {
               return -1;
             } else return 1;
           })
-          .slice(0, 10),
+          .slice(0, 50),
         globalDeaths: action.payload
           .sort((a, b) => {
             if (a.deaths > b.deaths) {
               return -1;
             } else return 1;
           })
-          .slice(0, 10),
+          .slice(0, 50),
         globalTests: action.payload
           .sort((a, b) => {
             if (a.tests > b.tests) {
               return -1;
             } else return 1;
           })
-          .slice(0, 10),
+          .slice(0, 50),
+        globalTestsPerMillion: action.payload
+          .sort((a, b) => {
+            if (a.testsPerOneMillion > b.testsPerOneMillion) {
+              return -1;
+            } else return 1;
+          })
+          .slice(0, 50),
         loading: false,
       };
     case "GET_GLOBAL":

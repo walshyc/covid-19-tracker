@@ -9,6 +9,9 @@ export const GlobalTableData = ({ data, index,type }) => {
     } else if(type === 'tests'){
         tableType = data.tests
     }
+    else if(type === 'testsPerMillion'){
+        tableType = data.testsPerOneMillion
+    }
   return (
     <>
       <tr className="table-light">
