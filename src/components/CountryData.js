@@ -1,5 +1,6 @@
 import React from "react";
 import NumberFormat from 'react-number-format';
+import * as moment from 'moment';
 
 export const CountryData = ({ nation }) => {
   const increaseCalc = (newNum, totalNum) => {
@@ -7,6 +8,9 @@ export const CountryData = ({ nation }) => {
     const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed(2);
     return increase;
   };
+
+  const updated = moment(new Date(nation.updated).toISOString()).format('llll')
+
   return (
     <>
       <tr>
@@ -40,31 +44,10 @@ export const CountryData = ({ nation }) => {
         <td></td>
         <td><NumberFormat value={nation.testsPerOneMillion} displayType={'text'} thousandSeparator={true} /></td>
       </tr>
+      <tr>
+        
+          <td colSpan='5'>Updated on {updated}</td>
+      </tr>
     </>
   );
 };
-// updated: 1586637926501,
-// country: "Zimbabwe",
-// cases: 13,
-// todayCases: 0,
-// deaths: 3,
-// todayDeaths: 0,
-// recovered: 0,
-// active: 10,
-// critical: 0,
-// casesPerOneMillion: 0,
-// deathsPerOneMillion: 0,
-// tests: 438,
-// testsPerOneMillion: 29
-
-// cases: 8928,
-// todayCases: 839,
-// deaths: 320,
-// todayDeaths: 33,
-// recovered: 25,
-// active: 8583,
-// critical: 194,
-// casesPerOneMillion: 1808,
-// deathsPerOneMillion: 65,
-// tests: 53000,
-// testsPerOneMillion: 10734
