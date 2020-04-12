@@ -124,7 +124,7 @@ export const GlobalCard = () => {
               <div className="card-body" style={{ padding: "1.1em" }}>
                 <div className="row no-gutters align-items-center">
                   <div className="col text-center ">
-                    <div className="h5 mb-0 font-weight-bold text-white text-uppercase align-middle">
+                    <div className="h6 mb-0 font-weight-bold text-white text-uppercase align-middle">
                       Countries
                       <br />
                       <NumberFormat
