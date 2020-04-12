@@ -1,6 +1,5 @@
 import React from "react";
 import NumberFormat from "react-number-format";
-import * as moment from "moment";
 import FlagIcon from "./layout/FlagIcon.js";
 import { FaArrowUp } from "react-icons/fa";
 
@@ -10,8 +9,6 @@ export const CountryInfo = ({ nation }) => {
     const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed();
     return increase;
   };
-
-  const updated = moment(new Date(nation.updated).toISOString()).format("llll");
 
   return (
     <>
@@ -183,7 +180,6 @@ export const CountryInfo = ({ nation }) => {
             </div>
           </div>
         </div>
-        <div className="card-footer text-muted">Updated on {updated}</div>
       </div>
     </>
   );

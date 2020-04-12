@@ -2,11 +2,16 @@ import React, { useContext } from "react";
 import NumberFormat from "react-number-format";
 import { GlobalContext } from "../context/GlobalState";
 import FlagIcon from "./layout/FlagIcon.js";
+import * as moment from "moment";
 import { FaArrowUp } from "react-icons/fa";
 
 export const GlobalInfo = ({ stats }) => {
   const { increaseCalc } = useContext(GlobalContext);
-
+  let updated = "";
+  if (stats.updated) {
+    updated = moment(new Date(stats.updated).toISOString()).format("llll");
+  }
+  //
   return (
     <>
       <div className="card bg-light mb-3">
@@ -17,7 +22,10 @@ export const GlobalInfo = ({ stats }) => {
             <span className="align-top text-primary pl-2">Worldwide</span>
           </h4>
           <div className="row pb-3">
-            <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
+            <div
+              className="col-4"
+              style={{ paddingRight: "5px", paddingLeft: "5px" }}
+            >
               <h6>
                 <small className="muted-text">Cases</small>
                 <br />
@@ -30,7 +38,10 @@ export const GlobalInfo = ({ stats }) => {
                 </div>
               </h6>
             </div>
-            <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
+            <div
+              className="col-4"
+              style={{ paddingRight: "5px", paddingLeft: "5px" }}
+            >
               <h6>
                 <small className="muted-text">Deaths</small>
                 <br />
@@ -43,7 +54,10 @@ export const GlobalInfo = ({ stats }) => {
                 </div>
               </h6>
             </div>
-            <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
+            <div
+              className="col-4"
+              style={{ paddingRight: "5px", paddingLeft: "5px" }}
+            >
               <h6>
                 <small className="muted-text">Tests</small>
                 <br />
@@ -61,7 +75,10 @@ export const GlobalInfo = ({ stats }) => {
             ""
           ) : (
             <div className="row pb-3">
-              <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
+              <div
+                className="col-4"
+                style={{ paddingRight: "5px", paddingLeft: "5px" }}
+              >
                 <h6>
                   <small className="muted-text">New Cases</small>
                   <br />
@@ -102,7 +119,10 @@ export const GlobalInfo = ({ stats }) => {
                   </div>
                 </h6>
               </div>
-              <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
+              <div
+                className="col-4"
+                style={{ paddingRight: "5px", paddingLeft: "5px" }}
+              >
                 <h6>
                   <small className="muted-text">New Deaths</small>
                   <br />
@@ -143,12 +163,18 @@ export const GlobalInfo = ({ stats }) => {
                   </div>
                 </h6>
               </div>
-              <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}></div>
+              <div
+                className="col-4"
+                style={{ paddingRight: "5px", paddingLeft: "5px" }}
+              ></div>
             </div>
           )}
 
           <div className="row">
-            <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
+            <div
+              className="col-4"
+              style={{ paddingRight: "5px", paddingLeft: "5px" }}
+            >
               <h6>
                 <small className="muted-text">Cases Per Million</small>
                 <br />
@@ -161,7 +187,10 @@ export const GlobalInfo = ({ stats }) => {
                 </div>
               </h6>
             </div>
-            <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
+            <div
+              className="col-4"
+              style={{ paddingRight: "5px", paddingLeft: "5px" }}
+            >
               <h6>
                 <small className="muted-text">Deaths Per Million</small>
                 <br />
@@ -174,7 +203,10 @@ export const GlobalInfo = ({ stats }) => {
                 </div>
               </h6>
             </div>
-            <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
+            <div
+              className="col-4"
+              style={{ paddingRight: "5px", paddingLeft: "5px" }}
+            >
               <h6>
                 <small className="muted-text">Tests Per Million</small>
                 <br />
@@ -189,6 +221,7 @@ export const GlobalInfo = ({ stats }) => {
             </div>
           </div>
         </div>
+        <div className="card-footer text-muted">Updated on {updated} </div>
       </div>
     </>
   );

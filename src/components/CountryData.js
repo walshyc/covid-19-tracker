@@ -1,6 +1,6 @@
 import React from "react";
 import NumberFormat from 'react-number-format';
-import * as moment from 'moment';
+
 
 export const CountryData = ({ nation }) => {
   const increaseCalc = (newNum, totalNum) => {
@@ -10,7 +10,7 @@ export const CountryData = ({ nation }) => {
     return increase;
   };
 
-  const updated = moment(new Date(nation.updated).toISOString()).format('llll')
+
 
   return (
     <>
@@ -45,10 +45,7 @@ export const CountryData = ({ nation }) => {
         <td></td>
         <td><NumberFormat value={nation.testsPerOneMillion} displayType={'text'} thousandSeparator={true} /></td>
       </tr>
-      <tr>
-        
-          <td colSpan='5'>Updated on {updated}</td>
-      </tr>
+
     </>
   );
 };

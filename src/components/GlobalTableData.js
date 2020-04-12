@@ -1,5 +1,6 @@
 import React from "react";
 import NumberFormat from "react-number-format";
+
 export const GlobalTableData = ({ data, index,type }) => {
     let tableType;
     if(type === 'cases'){
@@ -12,6 +13,8 @@ export const GlobalTableData = ({ data, index,type }) => {
     else if(type === 'testsPerMillion'){
         tableType = data.testsPerOneMillion
     }
+
+ 
   return (
     <>
       <tr className="table-light">
