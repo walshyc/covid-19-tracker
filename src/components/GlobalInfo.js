@@ -147,7 +147,7 @@ export const GlobalInfo = ({ stats }) => {
             </div>
           )}
 
-          <div className="row pb-3">
+          <div className="row">
             <div className="col-4" style={{paddingRight: '5px', paddingLeft: '5px'}}>
               <h6>
                 <small className="muted-text">Cases Per Million</small>
