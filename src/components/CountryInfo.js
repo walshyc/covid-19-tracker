@@ -2,14 +2,15 @@ import React from "react";
 import NumberFormat from "react-number-format";
 import * as moment from "moment";
 import FlagIcon from "./layout/FlagIcon.js";
+import { FaArrowUp } from "react-icons/fa";
 
 export const CountryInfo = ({ nation }) => {
-//   const increaseCalc = (newNum, totalNum) => {
-//     const oldNum = totalNum - newNum;
-//     const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed(2);
-//     console.log(typeof increase);
-//     return increase;
-//   };
+  const increaseCalc = (newNum, totalNum) => {
+    const oldNum = totalNum - newNum;
+    const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed();
+    console.log(typeof increase);
+    return increase;
+  };
 
   const updated = moment(new Date(nation.updated).toISOString()).format("llll");
 
@@ -72,43 +73,86 @@ export const CountryInfo = ({ nation }) => {
               </h5>
             </div>
           </div>
-          {nation.todayCases === 0 && nation.todayDeaths === 0 ? '':           <div className="row pb-3">
-            <div className="col-4">
-              <h5>
-                <small className="muted-text">New Cases</small>
-                <br />
-                <div className="text-bolder text-primary">
-                  {nation.todayCases === 0 ? (
-                    ""
-                  ) : (
-                    <NumberFormat
-                      value={nation.todayCases}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />
-                  )}
-                </div>
-              </h5>
-            </div>
-            <div className="col-4">
-              <h5>
-                <small className="muted-text">New Deaths</small>
-                <br />
-                <div className="text-bolder text-primary">
+          {nation.todayCases === 0 && nation.todayDeaths === 0 ? (
+            ""
+          ) : (
+            <div className="row pb-3">
+              <div className="col-4">
+                <h5>
+                
+                  <small className="muted-text">New Cases</small>
+                  <br />
+                  <div className="text-bolder text-primary">
+                    {nation.todayCases === 0 ? (
+                      ""
+                    ) : (
+                      <>
+                        <NumberFormat
+                          value={nation.todayCases}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />
+                        <span>
+                          <small
+                            className="text-primary font-weight-normal"
+                            style={{ fontSize: "60%", paddingLeft: "5px", verticalAlign:'middle' }}
+                          ><FaArrowUp></FaArrowUp> {' '}
+                            {isNaN(
+                              increaseCalc(nation.todayCases, nation.cases)
+                            ) ||
+                            increaseCalc(nation.todayCases, nation.cases) ===
+                              "0.00"
+                              ? ""
+                              : `${increaseCalc(
+                                  nation.todayCases,
+                                  nation.cases
+                              )}%`}
+                          </small>
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </h5>
+              </div>
+              <div className="col-4">
+                <h5>
+                  <small className="muted-text">New Deaths</small>
+                  <br />
+                  <div className="text-bolder text-primary">
                   {nation.todayDeaths === 0 ? (
-                    ""
-                  ) : (
-                    <NumberFormat
-                      value={nation.todayDeaths}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />
-                  )}
-                </div>
-              </h5>
+                      ""
+                    ) : (
+                      <>
+                        <NumberFormat
+                          value={nation.todayDeaths}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />
+                        <span>
+                          <small
+                            className="text-primary font-weight-normal"
+                            style={{ fontSize: "60%", paddingLeft: "5px", verticalAlign:'middle' }}
+                          ><FaArrowUp></FaArrowUp> {' '}
+                            {isNaN(
+                              increaseCalc(nation.todayDeaths, nation.deaths)
+                            ) ||
+                            increaseCalc(nation.todayDeaths, nation.deaths) ===
+                              "0.00"
+                              ? ""
+                              : `${increaseCalc(
+                                  nation.todayDeaths,
+                                  nation.deaths
+                              )}%`}
+                          </small>
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </h5>
+              </div>
+              <div className="col-4"></div>
             </div>
-            <div className="col-4"></div>
-          </div>}
+          )}
 
           <div className="row pb-3">
             <div className="col-4">
