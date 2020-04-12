@@ -10,7 +10,10 @@ const initialState = {
   },
   countries: [],
   loading: true,
-  global:''
+  global: "",
+  globalCases:[],
+  globalDeaths:[],
+  globalTests:[]
 };
 
 export const GlobalContext = createContext(initialState);
@@ -69,6 +72,7 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
+ 
   const setLoading = () => dispatch({ type: "SET_LOADING" });
 
   return (
@@ -78,10 +82,13 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         countries: state.countries,
         global: state.global,
+        globalCases: state.globalCases,
+        globalDeaths: state.globalDeaths,
+        globalTests: state.globalTests,
         getCountries,
         setCountry,
         setLoading,
-        getGlobalData
+        getGlobalData,
       }}
     >
       {children}

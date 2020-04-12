@@ -3,12 +3,14 @@ import { GlobalContext } from "../context/GlobalState";
 import NumberFormat from "react-number-format";
 
 export const GlobalCard = () => {
-  const { global, getGlobalData } = useContext(GlobalContext);
+  const { global, getGlobalData, getCountries } = useContext(GlobalContext);
   useEffect(() => {
     getGlobalData();
-
+    getCountries()
+    
     // eslint-disable-next-line
-  }, []);
+  }, []); 
+
   return (
     <div className="card text-dark bg-light my-3">
       <div className="card-header bg-custom text-xs font-weight-bolder text-light text-uppercase mb-1">

@@ -9,15 +9,42 @@ export default (state, action) => {
     case "GET_COUNTRIES":
       return {
         ...state,
-        countries: action.payload,
+        countries: action.payload
+        .sort((a, b) => {
+          if (a.country < b.country) {
+            return -1;
+          } else return 1;
+        })
+        .slice(0,300),
+        globalCases: action.payload
+          .sort((a, b) => {
+            if (a.cases > b.cases) {
+              return -1;
+            } else return 1;
+          })
+          .slice(0, 10),
+        globalDeaths: action.payload
+          .sort((a, b) => {
+            if (a.deaths > b.deaths) {
+              return -1;
+            } else return 1;
+          })
+          .slice(0, 10),
+        globalTests: action.payload
+          .sort((a, b) => {
+            if (a.tests > b.tests) {
+              return -1;
+            } else return 1;
+          })
+          .slice(0, 10),
         loading: false,
       };
-      case "GET_GLOBAL":
-        return {
-          ...state,
-          global: action.payload,
-          loading: false
-        }
+    case "GET_GLOBAL":
+      return {
+        ...state,
+        global: action.payload,
+        loading: false,
+      };
     case "SET_LOADING":
       return {
         ...state,

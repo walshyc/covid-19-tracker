@@ -7,17 +7,20 @@ import { GlobalProvider } from "./context/GlobalState";
 import { CountryCard } from "./components/CountryCard";
 import { GlobalCard } from "./components/GlobalCard";
 import { CountryForm } from "./components/CountryForm";
+import { GlobalStats } from "./components/GlobalStats";
 
 export default function App() {
+  
   return (
     <GlobalProvider>
       <Router>
         <div className="App">
           <Navbar></Navbar>
           <div className="container">
-            <GlobalCard></GlobalCard>
             <CountryForm></CountryForm>
             <CountryCard></CountryCard>
+            <GlobalCard></GlobalCard>
+            <GlobalStats></GlobalStats>
           </div>
           <Footer></Footer>
         </div>
