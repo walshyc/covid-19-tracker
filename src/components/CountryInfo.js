@@ -4,12 +4,12 @@ import * as moment from "moment";
 import FlagIcon from "./layout/FlagIcon.js";
 
 export const CountryInfo = ({ nation }) => {
-  const increaseCalc = (newNum, totalNum) => {
-    const oldNum = totalNum - newNum;
-    const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed(2);
-    console.log(typeof increase);
-    return increase;
-  };
+//   const increaseCalc = (newNum, totalNum) => {
+//     const oldNum = totalNum - newNum;
+//     const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed(2);
+//     console.log(typeof increase);
+//     return increase;
+//   };
 
   const updated = moment(new Date(nation.updated).toISOString()).format("llll");
 
@@ -140,7 +140,7 @@ export const CountryInfo = ({ nation }) => {
             </div>
           </div>
         </div>
-        <div class="card-footer text-muted">Updated on {updated}</div>
+        <div className="card-footer text-muted">Updated on {updated}</div>
       </div>
     </>
   );
