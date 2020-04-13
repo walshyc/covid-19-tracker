@@ -222,6 +222,8 @@ export const GlobalInfo = ({ stats }) => {
                       value={stats.testsPerOneMillion}
                       displayType={"text"}
                       thousandSeparator={true}
+                      decimalScale='0'
+                      decimalSeparator=''
                     />
                   </div>
                 </h6>

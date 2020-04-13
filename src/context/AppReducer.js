@@ -52,6 +52,11 @@ export default (state, action) => {
         global: action.payload,
         loading: false,
       };
+      case 'GET_GLOBAL_HISTORY':
+        return {
+          ...state,
+          globalHistory: action.payload
+        }
     case "SET_LOADING":
       return {
         ...state,

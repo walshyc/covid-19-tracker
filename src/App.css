@@ -4,3 +4,9 @@
 .bg-custom {
   background-color: #E3817F;
 }
+
+@media only screen and (max-width: 789px) {
+.recharts-responsive-container{
+  display: block!important;
+  visibility: visible!important;
+}}

@@ -11,10 +11,11 @@ const initialState = {
   countries: [],
   loading: true,
   global: "",
-  globalCases:[],
-  globalDeaths:[],
-  globalTests:[],
-  globalTestsPerMillion:[]
+  globalCases: [],
+  globalDeaths: [],
+  globalTests: [],
+  globalTestsPerMillion: [],
+  globalHistory: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -72,13 +73,30 @@ export const GlobalProvider = ({ children }) => {
       payload: res.data,
     });
   };
+
+  const getGlobalHistory = async () => {
+    setLoading();
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    const res = await axios.get(
+      `https://corona.lmao.ninja/v2/historical/all?lastdays=30`,
+      requestOptions
+    );
+    dispatch({
+      type: "GET_GLOBAL_HISTORY",
+      payload: res.data,
+    });
+  };
+
   const increaseCalc = (newNum, totalNum) => {
     const oldNum = totalNum - newNum;
     const increase = (((totalNum - oldNum) / oldNum) * 100).toFixed();
     return increase;
   };
 
- 
   const setLoading = () => dispatch({ type: "SET_LOADING" });
 
   return (
@@ -92,11 +110,13 @@ export const GlobalProvider = ({ children }) => {
         globalDeaths: state.globalDeaths,
         globalTests: state.globalTests,
         globalTestsPerMillion: state.globalTestsPerMillion,
+        globalHistory: state.globalHistory,
         getCountries,
         setCountry,
         setLoading,
         getGlobalData,
-        increaseCalc
+        increaseCalc,
+        getGlobalHistory,
       }}
     >
       {children}
