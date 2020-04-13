@@ -1,27 +1,32 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import { CountryPicker } from "./CountryPicker";
 
-
-export const CountryForm = () => {
+export const CountrySearchForm = () => {
+  const [text, setText] = useState("");
   const {
     setCountry,
     countries,
     nation,
     getGlobalData,
     getCountries,
-    getCountryHistory
+    searchCountries,
   } = useContext(GlobalContext);
 
   const handleChange = (e) => {
-    setCountry(e.target.value);
-    getCountryHistory(e.target.value)
+    setText(e.target.value);
+    setCountry(e.target.value)
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchCountries(text);
+    setText("");
   };
 
   useEffect(() => {
     getGlobalData();
     getCountries();
-    
 
     // eslint-disable-next-line
   }, []);
@@ -29,9 +34,23 @@ export const CountryForm = () => {
   return (
     <>
       <p></p>
+      <form className="form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="text"
+          placeholder="Search Users..."
+          value={text}
+          onChange={handleChange}
+        />
+        <input
+          type="submit"
+          value="Search"
+          className="btn btn-dark btn-block"
+        />
+      </form>
       <form>
         <div className="form-group">
-                    <select
+          <select
             id="country-selector"
             className="form-control"
             onChange={handleChange}

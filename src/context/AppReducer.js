@@ -10,12 +10,12 @@ export default (state, action) => {
       return {
         ...state,
         countries: action.payload
-        .sort((a, b) => {
-          if (a.country < b.country) {
-            return -1;
-          } else return 1;
-        })
-        .slice(0,300),
+          .sort((a, b) => {
+            if (a.country < b.country) {
+              return -1;
+            } else return 1;
+          })
+          .slice(0, 300),
         globalCases: action.payload
           .sort((a, b) => {
             if (a.cases > b.cases) {
@@ -52,11 +52,18 @@ export default (state, action) => {
         global: action.payload,
         loading: false,
       };
-      case 'GET_GLOBAL_HISTORY':
-        return {
-          ...state,
-          globalHistory: action.payload
-        }
+    case "GET_GLOBAL_HISTORY":
+      return {
+        ...state,
+        globalHistory: action.payload,
+        loading:false
+      };
+    case "GET_COUNTRY_HISTORY":
+      return {
+        ...state,
+        countryHistory: action.payload,
+        loading: false,
+      };
     case "SET_LOADING":
       return {
         ...state,

@@ -11,37 +11,35 @@ import {
 } from "recharts";
 import * as moment from "moment";
 
-export const GlobalChart = () => {
-  const { getGlobalHistory, globalHistory } = useContext(GlobalContext);
+export const CountryChart = () => {
+  const { getCountryHistory, countryHistory, nation } = useContext(
+    GlobalContext
+  );
   useEffect(() => {
-    getGlobalHistory();
     // eslint-disable-next-line
   }, []);
 
   let data = [];
-  if (globalHistory !== "") {
-    for (let key in globalHistory.cases) {
-      let cases = globalHistory.cases[key];
-      let deaths = globalHistory.deaths[key];
+  if(countryHistory !==''){
+  for (let key in countryHistory.cases){
+      let cases = countryHistory.cases[key]
+      let deaths = countryHistory.deaths[key]
 
       data.push({
-        date: moment(new Date(key).toISOString()).format("D/M"),
-        Cases: cases,
-        Deaths: deaths,
-      });
-    }
-  }
-
-  data.splice(0, [data.length - 30]);
+          date: moment(new Date(key).toISOString()).format("D/M"),
+           Cases: cases,
+           Deaths: deaths,
+      })
+  }}
 
   const formatYAxis = (tickItem) => {
-    return tickItem.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    return tickItem.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   };
 
   return (
     <>
       <div className="alert alert-dismissible alert-primary">
-        <strong className="text-uppercase">Worldwide</strong> - Last 30 days
+  <strong className="text-uppercase">{nation.country}</strong> - Last 30 days
       </div>
       <ResponsiveContainer Width="99%" aspect={1.9}>
         <LineChart data={data}>

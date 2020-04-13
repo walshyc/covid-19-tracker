@@ -4,9 +4,10 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import { GlobalProvider } from "./context/GlobalState";
-import { CountryCard } from "./components/country/CountryCard";
+
 import { CountryForm } from "./components/country/CountryForm";
 import { Global } from "./components/global/Global";
+import { Country } from "./components/country/Country";
 
 export default function App() {
   
@@ -17,7 +18,7 @@ export default function App() {
           <Navbar></Navbar>
           <div className="container">
             <CountryForm></CountryForm>
-            <CountryCard></CountryCard>
+            <Country></Country>
             <Global></Global>
           </div>
           <Footer></Footer>
