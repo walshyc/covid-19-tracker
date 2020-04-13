@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalTable } from "./GlobalTable";
-import { GlobalContext } from "../context/GlobalState";
+import { GlobalContext } from "../../context/GlobalState";
 
 export const GlobalStats = () => {
   const {globalCases,globalDeaths,globalTests, globalTestsPerMillion } = useContext(GlobalContext);

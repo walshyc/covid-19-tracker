@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
-import Spinner from "./layout/Spinner";
+import { GlobalContext } from "../../context/GlobalState";
+import Spinner from "../layout/Spinner";
 import {CountryInfo} from './CountryInfo'
 
 

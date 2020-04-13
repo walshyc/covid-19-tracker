@@ -4,10 +4,10 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import { GlobalProvider } from "./context/GlobalState";
-import { CountryCard } from "./components/CountryCard";
-import { GlobalCard } from "./components/GlobalCard";
-import { CountryForm } from "./components/CountryForm";
-import { GlobalStats } from "./components/GlobalStats";
+import { CountryCard } from "./components/country/CountryCard";
+import { GlobalCard } from "./components/global/GlobalCard";
+import { CountryForm } from "./components/country/CountryForm";
+import { GlobalStats } from "./components/global/GlobalStats";
 
 export default function App() {
   

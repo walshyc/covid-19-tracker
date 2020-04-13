@@ -1,6 +1,6 @@
 import React from "react";
 import NumberFormat from "react-number-format";
-import FlagIcon from "./layout/FlagIcon.js";
+import FlagIcon from "../layout/FlagIcon.js";
 import { FaArrowUp } from "react-icons/fa";
 
 export const CountryInfo = ({ nation }) => {
