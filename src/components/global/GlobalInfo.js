@@ -15,7 +15,10 @@ export const GlobalInfo = ({ stats }) => {
   return (
     <>
       <div className="card bg-light mb-3">
-        <div className="card-body"  style={{padding:'1em', paddingBottom:'.1em'}}>
+        <div
+          className="card-body"
+          style={{ padding: "1em", paddingBottom: ".1em" }}
+        >
           <h4 className="card-title">
             <span className="flag-icon flag-icon-un flag-icon-lg"></span>
             <span className="align-top text-primary pl-2">
@@ -27,7 +30,7 @@ export const GlobalInfo = ({ stats }) => {
               </span>
             </span>
           </h4>
-          <div className="card-body"  style={{padding:'1em'}}>
+          <div className="card-body" style={{ padding: "1em" }}>
             <div className="row pb-3">
               <div
                 className="col-4"
@@ -173,7 +176,20 @@ export const GlobalInfo = ({ stats }) => {
                 <div
                   className="col-4"
                   style={{ paddingRight: "5px", paddingLeft: "5px" }}
-                ></div>
+                >
+                  <h5>
+                    <small className="muted-text">Case Fatality Rate</small>
+                    <br />
+                    <div className="text-bolder text-primary">
+                      <NumberFormat
+                        value={increaseCalc(stats.deaths, stats.cases)}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
+                      %
+                    </div>
+                  </h5>
+                </div>
               </div>
             )}
 
@@ -222,8 +238,8 @@ export const GlobalInfo = ({ stats }) => {
                       value={stats.testsPerOneMillion}
                       displayType={"text"}
                       thousandSeparator={true}
-                      decimalScale='0'
-                      decimalSeparator=''
+                      decimalScale="0"
+                      decimalSeparator=""
                     />
                   </div>
                 </h6>
@@ -231,7 +247,10 @@ export const GlobalInfo = ({ stats }) => {
             </div>
           </div>
         </div>
-        <div className="card-footer text-muted text-right" style={{padding:'0.2rem .5rem'}}>
+        <div
+          className="card-footer text-muted text-right"
+          style={{ padding: "0.2rem .5rem" }}
+        >
           <small> Updated {updated} </small>
         </div>
       </div>
