@@ -146,7 +146,19 @@ export const CountryInfo = ({ nation }) => {
                   </div>
                 </h5>
               </div>
-              <div className="col-4"></div>
+              <div className="col-4">
+              <h5>
+                <small className="muted-text">Case Fatality Rate</small>
+                <br />
+                <div className="text-bolder text-primary">
+                  <NumberFormat
+                    value={increaseCalc(nation.deaths,nation.cases)}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />%
+                </div>
+              </h5>
+              </div>
             </div>
           )}
 
