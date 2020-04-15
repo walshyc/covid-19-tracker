@@ -74,7 +74,7 @@ export const CountryInfo = ({ nation }) => {
           ) : (
             <div className="row pb-3">
               <div className="col-4">
-                <h5>
+                <h6>
                 
                   <small className="muted-text">New Cases</small>
                   <br />
@@ -108,10 +108,10 @@ export const CountryInfo = ({ nation }) => {
                       </>
                     )}
                   </div>
-                </h5>
+                </h6>
               </div>
               <div className="col-4">
-                <h5>
+                <h6>
                   <small className="muted-text">New Deaths</small>
                   <br />
                   <div className="text-bolder text-primary">
@@ -144,10 +144,10 @@ export const CountryInfo = ({ nation }) => {
                       </>
                     )}
                   </div>
-                </h5>
+                </h6>
               </div>
               <div className="col-4">
-              <h5>
+              <h6>
                 <small className="muted-text">Case Fatality Rate</small>
                 <br />
                 <div className="text-bolder text-primary">
@@ -157,7 +157,7 @@ export const CountryInfo = ({ nation }) => {
                     thousandSeparator={true}
                   />%
                 </div>
-              </h5>
+              </h6>
               </div>
             </div>
           )}
