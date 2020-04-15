@@ -36,7 +36,7 @@ export const GlobalInfo = ({ stats }) => {
                 className="col-4"
                 style={{ paddingRight: "5px", paddingLeft: "5px" }}
               >
-                <h6>
+                <h5>
                   <small className="muted-text">Cases</small>
                   <br />
                   <div className="text-bolder text-primary">
@@ -46,13 +46,13 @@ export const GlobalInfo = ({ stats }) => {
                       thousandSeparator={true}
                     />
                   </div>
-                </h6>
+                </h5>
               </div>
               <div
                 className="col-4"
                 style={{ paddingRight: "5px", paddingLeft: "5px" }}
               >
-                <h6>
+                <h5>
                   <small className="muted-text">Deaths</small>
                   <br />
                   <div className="text-bolder text-primary">
@@ -62,13 +62,13 @@ export const GlobalInfo = ({ stats }) => {
                       thousandSeparator={true}
                     />
                   </div>
-                </h6>
+                </h5>
               </div>
               <div
                 className="col-4"
                 style={{ paddingRight: "5px", paddingLeft: "5px" }}
               >
-                <h6>
+                <h5>
                   <small className="muted-text">Tests</small>
                   <br />
                   <div className="text-bolder text-primary">
@@ -78,7 +78,7 @@ export const GlobalInfo = ({ stats }) => {
                       thousandSeparator={true}
                     />
                   </div>
-                </h6>
+                </h5>
               </div>
             </div>
             {stats.todayCases === 0 && stats.todayDeaths === 0 ? (
@@ -177,7 +177,7 @@ export const GlobalInfo = ({ stats }) => {
                   className="col-4"
                   style={{ paddingRight: "5px", paddingLeft: "5px" }}
                 >
-                  <h5>
+                  <h6>
                     <small className="muted-text">Case Fatality Rate</small>
                     <br />
                     <div className="text-bolder text-primary">
@@ -188,7 +188,7 @@ export const GlobalInfo = ({ stats }) => {
                       />
                       %
                     </div>
-                  </h5>
+                  </h6>
                 </div>
               </div>
             )}
