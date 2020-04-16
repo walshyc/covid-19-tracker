@@ -4,6 +4,7 @@ export default (state, action) => {
       return {
         ...state,
         nation: action.payload,
+        irlCounties: action.secondPayload,
         loading: false,
       };
     case "GET_COUNTRIES":
