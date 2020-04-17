@@ -9,9 +9,7 @@ export const Country = () => {
   const { nation, loading } = useContext(GlobalContext);
   if (loading) {
     return <Spinner></Spinner>;
-  } else if (nation.country === "") {
-    return "";
-  }
+  } 
   return (
     <>
       <div className="row">

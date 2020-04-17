@@ -9,9 +9,7 @@ export const CountryCard = () => {
 
   if (loading) {
     return <Spinner></Spinner>;
-  } else if (nation.country === "") {
-    return "";
-  }
+  } 
 
   return (
     <>

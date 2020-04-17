@@ -1,5 +1,6 @@
 import React from "react";
 import NumberFormat from "react-number-format";
+    // eslint-disable-next-line
 import FlagIcon from "../layout/FlagIcon.js";
 import { FaArrowUp } from "react-icons/fa";
 
@@ -70,12 +71,28 @@ export const CountryInfo = ({ nation }) => {
             </div>
           </div>
           {nation.todayCases === 0 && nation.todayDeaths === 0 ? (
-            ""
+            <div className="row pb-3">
+              <div className="col-4"></div>
+              <div className="col-4"></div>
+              <div className="col-4">
+                <h6>
+                  <small className="muted-text">Case Fatality Rate</small>
+                  <br />
+                  <div className="text-bolder text-primary">
+                    <NumberFormat
+                      value={increaseCalc(nation.deaths, nation.cases)}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
+                    %
+                  </div>
+                </h6>
+              </div>
+            </div>
           ) : (
             <div className="row pb-3">
               <div className="col-4">
                 <h6>
-                
                   <small className="muted-text">New Cases</small>
                   <br />
                   <div className="text-bolder text-primary">
@@ -91,8 +108,13 @@ export const CountryInfo = ({ nation }) => {
                         <span>
                           <small
                             className="text-primary font-weight-normal"
-                            style={{ fontSize: "60%", paddingLeft: "5px", verticalAlign:'middle' }}
-                          ><FaArrowUp></FaArrowUp> {' '}
+                            style={{
+                              fontSize: "60%",
+                              paddingLeft: "5px",
+                              verticalAlign: "middle",
+                            }}
+                          >
+                            <FaArrowUp></FaArrowUp>{" "}
                             {isNaN(
                               increaseCalc(nation.todayCases, nation.cases)
                             ) ||
@@ -102,7 +124,7 @@ export const CountryInfo = ({ nation }) => {
                               : `${increaseCalc(
                                   nation.todayCases,
                                   nation.cases
-                              )}%`}
+                                )}%`}
                           </small>
                         </span>
                       </>
@@ -115,7 +137,7 @@ export const CountryInfo = ({ nation }) => {
                   <small className="muted-text">New Deaths</small>
                   <br />
                   <div className="text-bolder text-primary">
-                  {nation.todayDeaths === 0 ? (
+                    {nation.todayDeaths === 0 ? (
                       ""
                     ) : (
                       <>
@@ -127,8 +149,13 @@ export const CountryInfo = ({ nation }) => {
                         <span>
                           <small
                             className="text-primary font-weight-normal"
-                            style={{ fontSize: "60%", paddingLeft: "5px", verticalAlign:'middle' }}
-                          ><FaArrowUp></FaArrowUp> {' '}
+                            style={{
+                              fontSize: "60%",
+                              paddingLeft: "5px",
+                              verticalAlign: "middle",
+                            }}
+                          >
+                            <FaArrowUp></FaArrowUp>{" "}
                             {isNaN(
                               increaseCalc(nation.todayDeaths, nation.deaths)
                             ) ||
@@ -138,7 +165,7 @@ export const CountryInfo = ({ nation }) => {
                               : `${increaseCalc(
                                   nation.todayDeaths,
                                   nation.deaths
-                              )}%`}
+                                )}%`}
                           </small>
                         </span>
                       </>
@@ -147,17 +174,18 @@ export const CountryInfo = ({ nation }) => {
                 </h6>
               </div>
               <div className="col-4">
-              <h6>
-                <small className="muted-text">Case Fatality Rate</small>
-                <br />
-                <div className="text-bolder text-primary">
-                  <NumberFormat
-                    value={increaseCalc(nation.deaths,nation.cases)}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                  />%
-                </div>
-              </h6>
+                <h6>
+                  <small className="muted-text">Case Fatality Rate</small>
+                  <br />
+                  <div className="text-bolder text-primary">
+                    <NumberFormat
+                      value={increaseCalc(nation.deaths, nation.cases)}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
+                    %
+                  </div>
+                </h6>
               </div>
             </div>
           )}
@@ -168,7 +196,11 @@ export const CountryInfo = ({ nation }) => {
                 <small className="muted-text">Cases Per Million</small>
                 <br />
                 <div className="text-bolder text-primary">
-                <NumberFormat value={nation.casesPerOneMillion} displayType={'text'} thousandSeparator={true} />
+                  <NumberFormat
+                    value={nation.casesPerOneMillion}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
                 </div>
               </h6>
             </div>
@@ -177,7 +209,11 @@ export const CountryInfo = ({ nation }) => {
                 <small className="muted-text">Deaths Per Million</small>
                 <br />
                 <div className="text-bolder text-primary">
-                <NumberFormat value={nation.deathsPerOneMillion} displayType={'text'} thousandSeparator={true} />
+                  <NumberFormat
+                    value={nation.deathsPerOneMillion}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
                 </div>
               </h6>
             </div>
@@ -186,7 +222,11 @@ export const CountryInfo = ({ nation }) => {
                 <small className="muted-text">Tests Per Million</small>
                 <br />
                 <div className="text-bolder text-primary">
-                <NumberFormat value={nation.testsPerOneMillion} displayType={'text'} thousandSeparator={true} />
+                  <NumberFormat
+                    value={nation.testsPerOneMillion}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
                 </div>
               </h6>
             </div>

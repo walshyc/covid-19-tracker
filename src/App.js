@@ -4,7 +4,6 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import { GlobalProvider } from "./context/GlobalState";
-
 import { CountryForm } from "./components/country/CountryForm";
 import { Global } from "./components/global/Global";
 import { Country } from "./components/country/Country";

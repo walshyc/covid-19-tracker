@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import NumberFormat from "react-number-format";
 import { GlobalContext } from "../../context/GlobalState";
+    // eslint-disable-next-line
 import FlagIcon from "../layout/FlagIcon.js";
 import * as moment from "moment";
 import { FaArrowUp } from "react-icons/fa";

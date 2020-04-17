@@ -19,6 +19,8 @@ export const CountryForm = () => {
   };
 
   useEffect(() => {
+    setCountry('Ireland')
+    getCountryHistory('Ireland')
     getGlobalData();
     getCountries();
     

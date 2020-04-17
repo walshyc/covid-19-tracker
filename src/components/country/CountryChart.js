@@ -12,25 +12,24 @@ import {
 import * as moment from "moment";
 
 export const CountryChart = () => {
-  const { getCountryHistory, countryHistory, nation } = useContext(
-    GlobalContext
-  );
+  const { countryHistory, nation } = useContext(GlobalContext);
   useEffect(() => {
     // eslint-disable-next-line
   }, []);
 
   let data = [];
-  if(countryHistory !==''){
-  for (let key in countryHistory.cases){
-      let cases = countryHistory.cases[key]
-      let deaths = countryHistory.deaths[key]
+  if (countryHistory !== "") {
+    for (let key in countryHistory.cases) {
+      let cases = countryHistory.cases[key];
+      let deaths = countryHistory.deaths[key];
 
       data.push({
-          date: moment(new Date(key).toISOString()).format("D/M"),
-           Cases: cases,
-           Deaths: deaths,
-      })
-  }}
+        date: moment(new Date(key).toISOString()).format("D/M"),
+        Cases: cases,
+        Deaths: deaths,
+      });
+    }
+  }
 
   const formatYAxis = (tickItem) => {
     return tickItem.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -39,7 +38,8 @@ export const CountryChart = () => {
   return (
     <>
       <div className="alert alert-dismissible alert-primary">
-  <strong className="text-uppercase">{nation.country}</strong> - Last 30 days
+        <strong className="text-uppercase">{nation.country}</strong> - Last 30
+        days
       </div>
       <ResponsiveContainer Width="99%" aspect={1.9}>
         <LineChart data={data}>

@@ -17,7 +17,8 @@ const initialState = {
   globalTestsPerMillion: [],
   globalHistory: [],
   countryHistory: [],
-  irlCounties:[]
+  irlCounties: [],
+  irlStats: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -36,7 +37,7 @@ export const GlobalProvider = ({ children }) => {
       `https://corona.lmao.ninja/v2/countries/${country}`,
       requestOptions
     );
-    let irelandData=[];
+    let irelandData = [];
 
     if (res.data.country === "Ireland") {
       irelandData = await axios.get(
@@ -44,10 +45,17 @@ export const GlobalProvider = ({ children }) => {
       );
     }
 
+    const secondRes = await axios.get(
+      `    https://services1.arcgis.com/eNO7HHeQ3rUcBllm/arcgis/rest/services/CovidStatisticsProfileHPSCIrelandOpenData/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json`
+    );
+    const irelandStats =
+      secondRes.data.features[secondRes.data.features.length - 1].attributes;
+
     dispatch({
       type: "SET_COUNTRY",
       payload: res.data,
       secondPayload: irelandData,
+      thirdPayload: irelandStats,
     });
   };
 
@@ -141,6 +149,7 @@ export const GlobalProvider = ({ children }) => {
         globalHistory: state.globalHistory,
         countryHistory: state.countryHistory,
         irlCounties: state.irlCounties,
+        irlStats: state.irlStats,
         getCountries,
         setCountry,
         setLoading,
