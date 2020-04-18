@@ -10,8 +10,8 @@ export const Global = () => {
   return (
     <>
       <div className="row">
-        <div className="col-md-12 col-lg-6"><GlobalCard></GlobalCard></div>
-        <div className="col-md-12 col-lg-6"><GlobalChart></GlobalChart></div>
+        <div className="col-12"><GlobalCard></GlobalCard></div>
+        <div className="col-12"><GlobalChart></GlobalChart></div>
       </div>
       
       
