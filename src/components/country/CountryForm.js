@@ -19,12 +19,8 @@ export const CountryForm = () => {
   };
 
   useEffect(() => {
-    setCountry('Ireland')
-    getCountryHistory('Ireland')
     getGlobalData();
     getCountries();
-    
-
     // eslint-disable-next-line
   }, []);
 

@@ -11,6 +11,9 @@ export const Country = () => {
   if (loading) {
     return <Spinner></Spinner>;
   }
+  else if(nation.country ===''){
+    return null
+  }
   return (
     <>
       {nation.country === "Ireland" ? (
