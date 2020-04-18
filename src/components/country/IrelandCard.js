@@ -8,14 +8,9 @@ export const IrelandCard = ({ nation }) => {
 
   return (
     <>
-      <div className="row">
-          <IrelandStats></IrelandStats>
-      </div>
-      <div className="row">
-        <div className="col-12">
-          <IrelandTable info={irlCounties}></IrelandTable>
-        </div>
-      </div>
+      <IrelandStats></IrelandStats>
+
+      <IrelandTable info={irlCounties}></IrelandTable>
     </>
   );
 };

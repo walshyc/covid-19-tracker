@@ -11,7 +11,7 @@ info.data.features.sort((a, b) => {
   return (
     <>
 
-        <table className="table table-hover">
+        <table className="table table-hover ">
           <thead className="">
             <tr className="table-primary text-uppercase rounded">
               <th scope="col">

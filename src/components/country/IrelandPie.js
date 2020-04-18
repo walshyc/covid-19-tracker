@@ -30,7 +30,7 @@ export const IrelandPie = () => {
             width={width}
             colors={["hsl(218, 81%, 60%)", "hsl(8, 100%, 68%)"]}
             data={data}
-            margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+            margin={{ top: 20, right: 0, bottom: 80, left: 0 }}
             cornerRadius={0}
             borderWidth={1}
             borderColor="#000000"
