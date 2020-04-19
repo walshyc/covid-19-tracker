@@ -10,12 +10,14 @@ export const CountryForm = () => {
     nation,
     getGlobalData,
     getCountries,
-    getCountryHistory
+    getCountryHistory,
+    getCountriesHistory
   } = useContext(GlobalContext);
 
   const handleChange = (e) => {
     setCountry(e.target.value);
     getCountryHistory(e.target.value)
+    getCountriesHistory()
   };
 
   useEffect(() => {

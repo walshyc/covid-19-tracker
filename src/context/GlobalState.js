@@ -9,6 +9,7 @@ const initialState = {
     deaths: "",
   },
   countries: [],
+  countriesHistory: [],
   loading: true,
   global: "",
   globalCases: [],
@@ -110,6 +111,23 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
+  const getCountriesHistory = async () => {
+    setLoading();
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    const res = await axios.get(
+      `https://corona.lmao.ninja/v2/historical`,
+      requestOptions
+    );
+    dispatch({
+      type: "GET_COUNTRIES_HISTORY",
+      payload: res.data,
+    });
+  };
+
   const getCountryHistory = async (country) => {
     setLoading();
     const requestOptions = {
@@ -141,6 +159,7 @@ export const GlobalProvider = ({ children }) => {
         nation: state.nation,
         loading: state.loading,
         countries: state.countries,
+        countriesHistory: state.countriesHistory,
         global: state.global,
         globalCases: state.globalCases,
         globalDeaths: state.globalDeaths,
@@ -157,6 +176,7 @@ export const GlobalProvider = ({ children }) => {
         increaseCalc,
         getGlobalHistory,
         getCountryHistory,
+        getCountriesHistory
       }}
     >
       {children}

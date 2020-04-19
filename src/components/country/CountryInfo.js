@@ -72,8 +72,7 @@ export const CountryInfo = ({ nation }) => {
           </div>
           {nation.todayCases === 0 && nation.todayDeaths === 0 ? (
             <div className="row pb-3">
-              <div className="col-4"></div>
-              <div className="col-4"></div>
+              <div className="col-8"> <small className="muted-text">Today's figures not yet released</small></div>
               <div className="col-4">
                 <h6>
                   <small className="muted-text">Case Fatality Rate</small>

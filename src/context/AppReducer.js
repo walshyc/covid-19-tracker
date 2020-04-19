@@ -60,6 +60,12 @@ export default (state, action) => {
         globalHistory: action.payload,
         loading:false
       };
+      case "GET_COUNTRIES_HISTORY":
+        return{
+          ...state,
+          countriesHistory: action.payload,
+          loading:false
+        }
     case "GET_COUNTRY_HISTORY":
       return {
         ...state,

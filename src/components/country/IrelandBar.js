@@ -63,7 +63,7 @@ export const IrelandBar = () => {
         {({ height, width }) => (
           <Bar
             theme={theme}
-            layout="horizontal"
+            layout="vertical"
             height={height}
             width={width}
             legends={[
@@ -75,7 +75,7 @@ export const IrelandBar = () => {
             data={data}
             keys={["Cases"]}
             indexBy="ageGroup"
-            margin={{ top: 20, right: 50, bottom: 50, left: 60 }}
+            margin={{ top: 20, right: 50, bottom: 60, left: 60 }}
             padding={0.05}
             enableLabel={false}
             colors={["hsl(218, 81%, 60%)"]}
@@ -116,18 +116,18 @@ export const IrelandBar = () => {
             borderColor="#000000"
             axisTop={null}
             axisRight={null}
-            axisBottom={{
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: 0,
-              tickValues: [500, 1000, 1500, 2000, 2500, 3000],
-              legendPosition: "center",
-              legendOffset: 36,
-            }}
             axisLeft={{
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
+              tickValues: [500, 1000, 1500, 2000, 2500, 3000, 3500],
+              legendPosition: "center",
+              legendOffset: 36,
+            }}
+            axisBottom={{
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 90,
 
               legendPosition: "center",
               legendOffset: 0,
