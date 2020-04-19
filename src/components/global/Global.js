@@ -1,9 +1,8 @@
-import React, {useContext} from "react";
+import React from "react";
 import { GlobalStats } from "./GlobalStats";
 import { GlobalChart } from "./GlobalChart";
 import { GlobalCard } from "./GlobalCard";
-import {GlobalContext} from '../../context/GlobalState'
-import Spinner from '../layout/Spinner'
+
 
 export const Global = () => {
   
