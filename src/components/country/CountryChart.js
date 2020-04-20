@@ -60,7 +60,7 @@ export const CountryChart = () => {
               <span className="float-right">
                 <FaArrowUp></FaArrowUp>{" "}
                 <NumberFormat
-                  value={calcIncrease(data[0].Cases, data[29].Cases)}
+                  value={calcIncrease(data[13].Cases, data[29].Cases)}
                   displayType={"text"}
                   thousandSeparator={true}
                 />
@@ -101,7 +101,7 @@ export const CountryChart = () => {
               <span className="float-right">
                 <FaArrowUp></FaArrowUp>{" "}
                 <NumberFormat
-                  value={calcIncrease(data[0].Deaths, data[29].Deaths)}
+                  value={calcIncrease(data[13].Deaths, data[29].Deaths)}
                   displayType={"text"}
                   thousandSeparator={true}
                 />%
