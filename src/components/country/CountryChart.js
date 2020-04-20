@@ -37,7 +37,7 @@ export const CountryChart = () => {
     if (oldNum === 0) {
       return null;
     }
-    return ((newNum / oldNum) * 100).toFixed(0);
+    return (((newNum / oldNum) * 100).toFixed(0)-100);
   };
   console.log(data);
   console.log(data[0].Cases);
@@ -60,7 +60,7 @@ export const CountryChart = () => {
               <span className="float-right">
                 <FaArrowUp></FaArrowUp>{" "}
                 <NumberFormat
-                  value={calcIncrease(data[13].Cases, data[29].Cases)}
+                  value={calcIncrease(data[0].Cases, data[29].Cases)}
                   displayType={"text"}
                   thousandSeparator={true}
                 />
@@ -101,7 +101,7 @@ export const CountryChart = () => {
               <span className="float-right">
                 <FaArrowUp></FaArrowUp>{" "}
                 <NumberFormat
-                  value={calcIncrease(data[13].Deaths, data[29].Deaths)}
+                  value={calcIncrease(data[0].Deaths, data[29].Deaths)}
                   displayType={"text"}
                   thousandSeparator={true}
                 />%
