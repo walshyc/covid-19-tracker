@@ -54,7 +54,7 @@ export const CountryChart = () => {
           <div className="alert alert-dismissible alert-primary">
             <strong className="text-uppercase">{nation.country} Cases</strong> -
             Last 30 days{" "}
-            {data[0].cases === 0 ? (
+            {data[0].Cases === 0 ? (
               ""
             ) : (
               <span className="float-right">
@@ -95,7 +95,7 @@ export const CountryChart = () => {
           <div className="alert alert-dismissible alert-primary">
             <strong className="text-uppercase">{nation.country} Deaths</strong>{" "}
             - Last 30 days{" "}
-            {data[0].cases === 0 ? (
+            {data[0].Deaths === 0 ? (
               ""
             ) : (
               <span className="float-right">
