@@ -10,6 +10,8 @@ import {
   Legend,
 } from "recharts";
 import * as moment from "moment";
+import { FaArrowUp } from "react-icons/fa";
+import NumberFormat from "react-number-format";
 
 export const CountryChart = () => {
   const { countryHistory, nation } = useContext(GlobalContext);
@@ -31,6 +33,16 @@ export const CountryChart = () => {
     }
   }
 
+  const calcIncrease = (oldNum, newNum) => {
+    if (oldNum === 0) {
+      return null;
+    }
+    return ((newNum / oldNum) * 100).toFixed(0);
+  };
+  console.log(data);
+  console.log(data[0].Cases);
+  console.log(data[29].Cases);
+
   const formatYAxis = (tickItem) => {
     return tickItem.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   };
@@ -40,8 +52,21 @@ export const CountryChart = () => {
       <div className="row">
         <div className="col-md-12 col-lg-6">
           <div className="alert alert-dismissible alert-primary">
-            <strong className="text-uppercase">{nation.country} Cases</strong> - Last
-            30 days
+            <strong className="text-uppercase">{nation.country} Cases</strong> -
+            Last 30 days{" "}
+            {data[0].cases === 0 ? (
+              ""
+            ) : (
+              <span className="float-right">
+                <FaArrowUp></FaArrowUp>{" "}
+                <NumberFormat
+                  value={calcIncrease(data[0].Cases, data[29].Cases)}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                />
+                %
+              </span>
+            )}
           </div>
           <ResponsiveContainer Width="99%" aspect={1.9}>
             <LineChart data={data}>
@@ -68,8 +93,20 @@ export const CountryChart = () => {
         </div>
         <div className="col-md-12 col-lg-6">
           <div className="alert alert-dismissible alert-primary">
-            <strong className="text-uppercase">{nation.country} Deaths</strong> - Last
-            30 days
+            <strong className="text-uppercase">{nation.country} Deaths</strong>{" "}
+            - Last 30 days{" "}
+            {data[0].cases === 0 ? (
+              ""
+            ) : (
+              <span className="float-right">
+                <FaArrowUp></FaArrowUp>{" "}
+                <NumberFormat
+                  value={calcIncrease(data[0].Deaths, data[29].Deaths)}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                />%
+              </span>
+            )}
           </div>
           <ResponsiveContainer Width="99%" aspect={1.9}>
             <LineChart data={data}>
