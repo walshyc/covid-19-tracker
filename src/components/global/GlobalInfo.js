@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import NumberFormat from "react-number-format";
 import { GlobalContext } from "../../context/GlobalState";
-    // eslint-disable-next-line
+// eslint-disable-next-line
 import FlagIcon from "../layout/FlagIcon.js";
 import * as moment from "moment";
 import { FaArrowUp } from "react-icons/fa";
@@ -22,14 +22,7 @@ export const GlobalInfo = ({ stats }) => {
         >
           <h4 className="card-title">
             <span className="flag-icon flag-icon-un flag-icon-lg"></span>
-            <span className="align-top text-primary pl-2">
-              Worldwide{" "}
-              <span>
-                <small style={{ fontWeight: "600" }}>
-                  ({stats.affectedCountries})
-                </small>
-              </span>
-            </span>
+            <span className="align-top text-primary pl-2">Worldwide</span>
           </h4>
           <div className="card-body" style={{ padding: "1em" }}>
             <div className="row pb-3">
