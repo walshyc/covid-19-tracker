@@ -3,8 +3,6 @@ import { IrelandTableData } from "./IrelandTableData";
 
 export const IrelandTable = ({ info, type, title }) => {
   const recentInfo = info.data.features.slice(-26);
-  console.log(recentInfo)
-
   recentInfo.sort((a, b) => {
     if (a.attributes.ConfirmedCovidCases < b.attributes.ConfirmedCovidCases) {
       return 1;
