@@ -12,13 +12,13 @@ export const IrelandTableData = ({ data }) => {
         <th scope="col">
           {" "}
           <NumberFormat
-            value={data.attributes.CovidCases}
+            value={data.attributes.ConfirmedCovidCases}
             displayType={"text"}
             thousandSeparator={true}
           />
         </th>
         <th scope="col">
-          {((data.attributes.CovidCases / nation.cases) * 100).toFixed(1)}%
+          {((data.attributes.ConfirmedCovidCases / nation.cases) * 100).toFixed(1)}%
         </th>
       </tr>
     </>

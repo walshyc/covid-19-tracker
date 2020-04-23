@@ -39,9 +39,7 @@ export const CountryChart = () => {
     }
     return (((newNum / oldNum) * 100).toFixed(0)-100);
   };
-  console.log(data);
-  console.log(data[0].Cases);
-  console.log(data[29].Cases);
+
 
   const formatYAxis = (tickItem) => {
     return tickItem.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
