@@ -120,7 +120,7 @@ export const IrelandBar = () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              tickValues: [500, 1000, 1500, 2000, 2500, 3000, 3500],
+              // tickValues: [500, 1000, 1500, 2000, 2500, 3000, 3500],
               legendPosition: "center",
               legendOffset: 36,
             }}
