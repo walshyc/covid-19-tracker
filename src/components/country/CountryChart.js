@@ -33,6 +33,8 @@ export const CountryChart = () => {
     }
   }
 
+  console.log(data)
+
   const calcIncrease = (oldNum, newNum) => {
     if (oldNum === 0) {
       return null;

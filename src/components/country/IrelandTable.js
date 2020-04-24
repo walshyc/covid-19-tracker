@@ -2,8 +2,8 @@ import React from "react";
 import { IrelandTableData } from "./IrelandTableData";
 
 export const IrelandTable = ({ info, type, title }) => {
-  const recentInfo = info.data.features.slice(-26);
-  recentInfo.sort((a, b) => {
+  
+  info.sort((a, b) => {
     if (a.attributes.ConfirmedCovidCases < b.attributes.ConfirmedCovidCases) {
       return 1;
     } else return -1;
@@ -20,7 +20,7 @@ export const IrelandTable = ({ info, type, title }) => {
           </tr>
         </thead>
         <tbody>
-          {recentInfo.map((county) => {
+          {info.map((county) => {
             return (
               <IrelandTableData
                 data={county}
