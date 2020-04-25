@@ -7,12 +7,13 @@ import { IrelandTable } from "./IrelandTable";
 import Spinner from "../layout/Spinner";
 
 export const Country = () => {
-  const { nation, loading, irlCounties } = useContext(GlobalContext);
+  const { nation, loading, irlCounties, countryHistory } = useContext(
+    GlobalContext
+  );
   if (loading) {
     return <Spinner></Spinner>;
-  }
-  else if(nation.country ===''){
-    return null
+  } else if (nation.country === "") {
+    return null;
   }
   return (
     <>
@@ -36,9 +37,13 @@ export const Country = () => {
           <div className="col-12">
             <CountryCard></CountryCard>
           </div>
-          <div className="col-12 mb-3">
-            <CountryChart></CountryChart>
-          </div>
+          {countryHistory === "" ? (
+            ""
+          ) : (
+            <div className="col-12 mb-3">
+              <CountryChart></CountryChart>
+            </div>
+          )}
         </div>
       )}
     </>
