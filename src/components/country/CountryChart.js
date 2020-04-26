@@ -55,7 +55,7 @@ export const CountryChart = () => {
         <div className="row">
           <div className="col-md-12 col-lg-6">
             <div className="alert alert-dismissible alert-primary">
-              <strong className="text-uppercase">{nation.country} Cases</strong>
+              <strong className="text-uppercase">{nation.country} Cases</strong>{" "}
               - Last 30 days
               <span className="float-right">
                 <FaArrowUp></FaArrowUp>{" "}
@@ -66,7 +66,7 @@ export const CountryChart = () => {
                 />
                 %
               </span>
-              }
+              
             </div>
             <ResponsiveContainer Width="99%" aspect={1.9}>
               <LineChart data={data}>
