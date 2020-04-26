@@ -20,19 +20,21 @@ export const CountryChart = () => {
   }, []);
 
   let data = [];
-  if (countryHistory !== "") {
+  if (countryHistory !== []) {
     for (let key in countryHistory.cases) {
       let cases = countryHistory.cases[key];
       let deaths = countryHistory.deaths[key];
+      let newDeaths =
+        countryHistory.deaths[key] - countryHistory.deaths[key - 1];
 
       data.push({
         date: moment(new Date(key).toISOString()).format("D/M"),
         Cases: cases,
         Deaths: deaths,
+        NewDeaths: newDeaths,
       });
     }
   }
-
 
   const calcIncrease = (oldNum, newNum) => {
     if (oldNum === 0) {
@@ -45,27 +47,26 @@ export const CountryChart = () => {
     return tickItem.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   };
 
-  if (data !== []) {
+  if (data.length === 0) {
+    return <></>;
+  } else {
     return (
       <>
         <div className="row">
           <div className="col-md-12 col-lg-6">
             <div className="alert alert-dismissible alert-primary">
-              <strong className="text-uppercase">{nation.country} Cases</strong>{" "}
-              - Last 30 days{" "}
-              {data[0].Cases === 0 ? (
-                ""
-              ) : (
-                <span className="float-right">
-                  <FaArrowUp></FaArrowUp>{" "}
-                  <NumberFormat
-                    value={calcIncrease(data[0].Cases, data[29].Cases)}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                  />
-                  %
-                </span>
-              )}
+              <strong className="text-uppercase">{nation.country} Cases</strong>
+              - Last 30 days
+              <span className="float-right">
+                <FaArrowUp></FaArrowUp>{" "}
+                <NumberFormat
+                  value={calcIncrease(data[0].Cases, data[29].Cases)}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                />
+                %
+              </span>
+              }
             </div>
             <ResponsiveContainer Width="99%" aspect={1.9}>
               <LineChart data={data}>
@@ -140,5 +141,5 @@ export const CountryChart = () => {
         </div>
       </>
     );
-  } else return <></>;
+  }
 };

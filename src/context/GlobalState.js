@@ -38,14 +38,15 @@ export const GlobalProvider = ({ children }) => {
       `https://corona.lmao.ninja/v2/countries/${country}`,
       requestOptions
     );
+
     let irelandData = [];
-    let countiesData=[]
+    let countiesData = [];
 
     if (res.data.country === "Ireland") {
       irelandData = await axios.get(
         "https://services1.arcgis.com/eNO7HHeQ3rUcBllm/arcgis/rest/services/Covid19CountyStatisticsHPSCIreland/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
       );
-      
+
       countiesData = irelandData.data.features.slice(-26);
     }
 
@@ -54,7 +55,6 @@ export const GlobalProvider = ({ children }) => {
     );
     const irelandStats =
       secondRes.data.features[secondRes.data.features.length - 1].attributes;
-
 
     dispatch({
       type: "SET_COUNTRY",
@@ -138,14 +138,33 @@ export const GlobalProvider = ({ children }) => {
       method: "GET",
       redirect: "follow",
     };
+    let res
+    let data
+    try {
+      res = await axios.get(
+        `https://corona.lmao.ninja/v2/historical/${country}`,
+        requestOptions
+      );
+      data = res.data.timeline
+    } catch (error) {
+      // Error 😨
+      if (error.response) {
+          /*
+           * The request was made and the server responded with a
+           * status code that falls out of the range of 2xx
+           */
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          data = []
+      } 
+      
+  }
+    
 
-    const res = await axios.get(
-      `https://corona.lmao.ninja/v2/historical/${country}`,
-      requestOptions
-    );
     dispatch({
       type: "GET_COUNTRY_HISTORY",
-      payload: res.data.timeline,
+      payload: data,
     });
   };
 
@@ -180,7 +199,7 @@ export const GlobalProvider = ({ children }) => {
         increaseCalc,
         getGlobalHistory,
         getCountryHistory,
-        getCountriesHistory
+        getCountriesHistory,
       }}
     >
       {children}
