@@ -46,6 +46,20 @@ export default (state, action) => {
             } else return 1;
           })
           .slice(0, 50),
+        globalDeathsPerMillion: action.payload
+          .sort((a, b) => {
+            if (a.deathsPerOneMillion > b.deathsPerOneMillion) {
+              return -1;
+            } else return 1;
+          })
+          .slice(0, 50),
+        globalCasesPerMillion: action.payload
+          .sort((a, b) => {
+            if (a.casesPerOneMillion > b.casesPerOneMillion) {
+              return -1;
+            } else return 1;
+          })
+          .slice(0, 50),
         loading: false,
       };
     case "GET_GLOBAL":
