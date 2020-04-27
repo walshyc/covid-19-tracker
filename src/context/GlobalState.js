@@ -12,16 +12,10 @@ const initialState = {
   countriesHistory: [],
   loading: true,
   global: "",
-  globalCases: [],
-  globalDeaths: [],
-  globalTests: [],
-  globalTestsPerMillion: [],
-  globalCasesPerMillion: [],
-  globalDeathsPerMillion: [],
   globalHistory: [],
   countryHistory: [],
   irlCounties: [],
-  irlStats: [],
+  irlStats: []
 };
 
 export const GlobalContext = createContext(initialState);
@@ -42,7 +36,7 @@ export const GlobalProvider = ({ children }) => {
     );
 
     
-    let countiesData = [];
+    // let countiesData = [];
     let irelandStats=[]
 
     if (res.data.country === "Ireland") {
@@ -187,12 +181,6 @@ export const GlobalProvider = ({ children }) => {
         countries: state.countries,
         countriesHistory: state.countriesHistory,
         global: state.global,
-        globalCases: state.globalCases,
-        globalDeaths: state.globalDeaths,
-        globalTests: state.globalTests,
-        globalTestsPerMillion: state.globalTestsPerMillion,
-        globalDeathsPerMillion: state.globalDeathsPerMillion,
-        globalCasesPerMillion: state.globalCasesPerMillion,
         globalHistory: state.globalHistory,
         countryHistory: state.countryHistory,
         irlCounties: state.irlCounties,

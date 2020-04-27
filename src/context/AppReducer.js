@@ -18,48 +18,6 @@ export default (state, action) => {
             } else return 1;
           })
           .slice(0, 300),
-        globalCases: action.payload
-          .sort((a, b) => {
-            if (a.cases > b.cases) {
-              return -1;
-            } else return 1;
-          })
-          .slice(0, 50),
-        globalDeaths: action.payload
-          .sort((a, b) => {
-            if (a.deaths > b.deaths) {
-              return -1;
-            } else return 1;
-          })
-          .slice(0, 50),
-        globalTests: action.payload
-          .sort((a, b) => {
-            if (a.tests > b.tests) {
-              return -1;
-            } else return 1;
-          })
-          .slice(0, 50),
-        globalTestsPerMillion: action.payload
-          .sort((a, b) => {
-            if (a.testsPerOneMillion > b.testsPerOneMillion) {
-              return -1;
-            } else return 1;
-          })
-          .slice(0, 50),
-        globalDeathsPerMillion: action.payload
-          .sort((a, b) => {
-            if (a.deathsPerOneMillion > b.deathsPerOneMillion) {
-              return -1;
-            } else return 1;
-          })
-          .slice(0, 50),
-        globalCasesPerMillion: action.payload
-          .sort((a, b) => {
-            if (a.casesPerOneMillion > b.casesPerOneMillion) {
-              return -1;
-            } else return 1;
-          })
-          .slice(0, 50),
         loading: false,
       };
     case "GET_GLOBAL":
@@ -72,14 +30,14 @@ export default (state, action) => {
       return {
         ...state,
         globalHistory: action.payload,
-        loading:false
+        loading: false,
       };
-      case "GET_COUNTRIES_HISTORY":
-        return{
-          ...state,
-          countriesHistory: action.payload,
-          loading:false
-        }
+    case "GET_COUNTRIES_HISTORY":
+      return {
+        ...state,
+        countriesHistory: action.payload,
+        loading: false,
+      };
     case "GET_COUNTRY_HISTORY":
       return {
         ...state,

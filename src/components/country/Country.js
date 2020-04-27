@@ -3,11 +3,11 @@ import { CountryChart } from "./CountryChart";
 import { GlobalContext } from "../../context/GlobalState";
 import { CountryCard } from "./CountryCard";
 import { IrelandStats } from "./IrelandStats";
-import { IrelandTable } from "./IrelandTable";
+// import { IrelandTable } from "./IrelandTable";
 import Spinner from "../layout/Spinner";
 
 export const Country = () => {
-  const { nation, loading, irlCounties, countryHistory } = useContext(
+  const { nation, loading, countryHistory } = useContext(
     GlobalContext
   );
   if (loading) {
