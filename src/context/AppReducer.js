@@ -4,7 +4,7 @@ export default (state, action) => {
       return {
         ...state,
         nation: action.payload,
-        irlCounties: action.secondPayload,
+        // irlCounties: action.secondPayload,
         irlStats: action.thirdPayload,
         loading: false,
       };

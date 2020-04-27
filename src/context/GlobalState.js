@@ -41,16 +41,16 @@ export const GlobalProvider = ({ children }) => {
       requestOptions
     );
 
-    let irelandData = [];
+    
     let countiesData = [];
     let irelandStats=[]
 
     if (res.data.country === "Ireland") {
-      irelandData = await axios.get(
-        "https://services1.arcgis.com/eNO7HHeQ3rUcBllm/arcgis/rest/services/Covid19CountyStatisticsHPSCIreland/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
-      );
+      // irelandData = await axios.get(
+      //   "https://services1.arcgis.com/eNO7HHeQ3rUcBllm/arcgis/rest/services/Covid19CountyStatisticsHPSCIreland/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
+      // );
 
-      countiesData = irelandData.data.features.slice(-26);
+      // countiesData = irelandData.data.features.slice(-26);
       const secondRes = await axios.get(
         `https://services1.arcgis.com/eNO7HHeQ3rUcBllm/arcgis/rest/services/CovidStatisticsProfileHPSCIrelandOpenData/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json`
       );
@@ -62,7 +62,7 @@ export const GlobalProvider = ({ children }) => {
     dispatch({
       type: "SET_COUNTRY",
       payload: res.data,
-      secondPayload: countiesData,
+      // secondPayload: countiesData,
       thirdPayload: irelandStats,
     });
   };

@@ -28,9 +28,9 @@ export const Country = () => {
           <div className="col-12 mb-4">
             <CountryChart></CountryChart>
           </div>
-          <div className="col-12">
+          {/* <div className="col-12">
             <IrelandTable info={irlCounties}></IrelandTable>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div className="row">
