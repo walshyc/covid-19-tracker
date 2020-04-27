@@ -10,7 +10,7 @@ export const IconButton = ({ country }) => {
     getCountriesHistory();
   };
   return (
-    <button type="button" className="btn btn-primary btn-block m-1" onClick={handleChange} value={country.code}>
+    <button type="button" className="btn btn-primary btn-block m-1" onClick={handleChange} value={country.icon}>
       <span 
         style={{ verticalAlign: "bottom" }}
         className={`flag-icon flag-icon-${country.icon} flag-icon-lg`}

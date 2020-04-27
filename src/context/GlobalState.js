@@ -138,10 +138,11 @@ export const GlobalProvider = ({ children }) => {
     let data;
     try {
       res = await axios.get(
-        `https://corona.lmao.ninja/v2/historical/${country}`,
+        `https://api.thevirustracker.com/free-api?countryTimeline=${country}`,
         requestOptions
       );
-      data = res.data.timeline;
+      
+      data = res.data.timelineitems[0]
     } catch (error) {
       // Error 😨
       if (error.response) {

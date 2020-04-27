@@ -20,21 +20,25 @@ export const CountryChart = () => {
   }, []);
 
   let data = [];
+
   if (countryHistory !== []) {
-    for (let key in countryHistory.cases) {
-      let cases = countryHistory.cases[key];
-      let deaths = countryHistory.deaths[key];
-      let newDeaths =
-        countryHistory.deaths[key] - countryHistory.deaths[key - 1];
+    for (let key in countryHistory) {
+      let cases = countryHistory[key].total_cases;
+      let deaths = countryHistory[key].total_deaths;
+      let newCases = countryHistory[key].new_daily_cases
+      let newDeaths = countryHistory[key].new_daily_deaths
 
       data.push({
-        date: moment(new Date(key).toISOString()).format("D/M"),
+        date: key,
         Cases: cases,
         Deaths: deaths,
         NewDeaths: newDeaths,
+        NewCases: newCases
       });
     }
   }
+  const shortData = data.splice(-30)
+  console.log(shortData)
 
   const calcIncrease = (oldNum, newNum) => {
     if (oldNum === 0) {
@@ -60,7 +64,7 @@ export const CountryChart = () => {
               <span className="float-right">
                 <FaArrowUp></FaArrowUp>{" "}
                 <NumberFormat
-                  value={calcIncrease(data[0].Cases, data[29].Cases)}
+                  value={calcIncrease(shortData[0].Cases, shortData[28].Cases)}
                   displayType={"text"}
                   thousandSeparator={true}
                 />
@@ -69,7 +73,7 @@ export const CountryChart = () => {
               
             </div>
             <ResponsiveContainer Width="99%" aspect={1.9}>
-              <LineChart data={data}>
+              <LineChart data={shortData}>
                 <XAxis
                   dataKey="date"
                   tick={{ fontSize: "0.7em", fill: "#2C72EA" }}
@@ -89,6 +93,7 @@ export const CountryChart = () => {
                 <Legend />
 
                 <Line type="monotone" dataKey="Cases" stroke="#02B875" />
+                <Line type="monotone" dataKey="NewCases" stroke="#02B875" />
                 {/* <Line type="monotone" dataKey="Deaths" stroke="#D23430" /> */}
               </LineChart>
             </ResponsiveContainer>
@@ -99,13 +104,13 @@ export const CountryChart = () => {
                 {nation.country} Deaths
               </strong>{" "}
               - Last 30 days{" "}
-              {data[0].Deaths === 0 ? (
+              {shortData[0].Deaths === 0 ? (
                 ""
               ) : (
                 <span className="float-right">
                   <FaArrowUp></FaArrowUp>{" "}
                   <NumberFormat
-                    value={calcIncrease(data[0].Deaths, data[29].Deaths)}
+                    value={calcIncrease(shortData[0].Deaths, shortData[28].Deaths)}
                     displayType={"text"}
                     thousandSeparator={true}
                   />
@@ -114,7 +119,7 @@ export const CountryChart = () => {
               )}
             </div>
             <ResponsiveContainer Width="99%" aspect={1.9}>
-              <LineChart data={data}>
+              <LineChart data={shortData}>
                 <XAxis
                   dataKey="date"
                   tick={{ fontSize: "0.7em", fill: "#2C72EA" }}
@@ -135,6 +140,7 @@ export const CountryChart = () => {
 
                 {/* <Line type="monotone" dataKey="Cases" stroke="#02B875" /> */}
                 <Line type="monotone" dataKey="Deaths" stroke="#D23430" />
+                <Line type="monotone" dataKey="NewDeaths" stroke="#D23430" />
               </LineChart>
             </ResponsiveContainer>
           </div>
