@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import { CountryPicker } from "./CountryPicker";
+import {IconBox} from './IconBox'
 
 
 export const CountryForm = () => {
@@ -11,10 +12,11 @@ export const CountryForm = () => {
     getGlobalData,
     getCountries,
     getCountryHistory,
-    getCountriesHistory
+    getCountriesHistory,
   } = useContext(GlobalContext);
 
   const handleChange = (e) => {
+    e.preventDefault()
     setCountry(e.target.value);
     getCountryHistory(e.target.value)
     getCountriesHistory()
@@ -28,8 +30,7 @@ export const CountryForm = () => {
 
   return (
     <>
-      <p></p>
-      <form>
+      <form className='pt-3'>
         <div className="form-group">
                     <select
             id="country-selector"
@@ -51,6 +52,7 @@ export const CountryForm = () => {
           </select>
         </div>
       </form>
+      <IconBox countries={countries}></IconBox>
     </>
   );
 };

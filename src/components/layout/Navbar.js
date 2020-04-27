@@ -9,6 +9,7 @@ function Navbar() {
           <Link
             to="/"
             className="text-xs font-weight-bold text-light text-uppercase mb-1navbar-brand"
+            onClick={() => window.location.reload()}
           >
             Covid-19 Tracker
           </Link>

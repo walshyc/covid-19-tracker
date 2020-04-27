@@ -15,7 +15,8 @@ const initialState = {
   globalHistory: [],
   countryHistory: [],
   irlCounties: [],
-  irlStats: []
+  irlStats: [],
+  iconData: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -35,9 +36,8 @@ export const GlobalProvider = ({ children }) => {
       requestOptions
     );
 
-    
     // let countiesData = [];
-    let irelandStats=[]
+    let irelandStats = [];
 
     if (res.data.country === "Ireland") {
       // irelandData = await axios.get(
@@ -51,7 +51,6 @@ export const GlobalProvider = ({ children }) => {
       irelandStats =
         secondRes.data.features[secondRes.data.features.length - 1].attributes;
     }
-
 
     dispatch({
       type: "SET_COUNTRY",
@@ -135,29 +134,27 @@ export const GlobalProvider = ({ children }) => {
       method: "GET",
       redirect: "follow",
     };
-    let res
-    let data
+    let res;
+    let data;
     try {
       res = await axios.get(
         `https://corona.lmao.ninja/v2/historical/${country}`,
         requestOptions
       );
-      data = res.data.timeline
+      data = res.data.timeline;
     } catch (error) {
       // Error 😨
       if (error.response) {
-          /*
-           * The request was made and the server responded with a
-           * status code that falls out of the range of 2xx
-           */
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          data = []
-      } 
-      
-  }
-    
+        /*
+         * The request was made and the server responded with a
+         * status code that falls out of the range of 2xx
+         */
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        data = [];
+      }
+    }
 
     dispatch({
       type: "GET_COUNTRY_HISTORY",
@@ -172,6 +169,7 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const setLoading = () => dispatch({ type: "SET_LOADING" });
+  const setLoadingFalse = () => dispatch({ type: "SET_LOADING_FALSE" });
 
   return (
     <GlobalContext.Provider
@@ -185,9 +183,11 @@ export const GlobalProvider = ({ children }) => {
         countryHistory: state.countryHistory,
         irlCounties: state.irlCounties,
         irlStats: state.irlStats,
+        iconData: state.iconData,
         getCountries,
         setCountry,
         setLoading,
+        setLoadingFalse,
         getGlobalData,
         increaseCalc,
         getGlobalHistory,

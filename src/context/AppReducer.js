@@ -18,6 +18,13 @@ export default (state, action) => {
             } else return 1;
           })
           .slice(0, 300),
+          iconData:action.payload
+          .sort((a, b) => {
+            if (a.cases < b.cases) {
+              return -1;
+            } else return 1;
+          })
+          .slice(0, 11),
         loading: false,
       };
     case "GET_GLOBAL":
@@ -48,6 +55,11 @@ export default (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case "SET_LOADING_FALSE":
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;
