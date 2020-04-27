@@ -3,11 +3,14 @@ import { GlobalContext } from "../../context/GlobalState";
 import {
   LineChart,
   Line,
+  Bar,
   XAxis,
   YAxis,
   ResponsiveContainer,
   Tooltip,
   Legend,
+  Area,
+  ComposedChart
 } from "recharts";
 import * as moment from "moment";
 import { FaArrowUp } from "react-icons/fa";
@@ -29,15 +32,16 @@ export const CountryChart = () => {
       let newDeaths = countryHistory[key].new_daily_deaths
 
       data.push({
-        date: key,
+        date: moment(moment(key, "MM/DD/YYYY").toISOString()).format("D/M"),
         Cases: cases,
         Deaths: deaths,
-        NewDeaths: newDeaths,
-        NewCases: newCases
+        'New Deaths': newDeaths,
+        'New Cases': newCases
       });
     }
   }
-  const shortData = data.splice(-30)
+  let shortData = data.splice(-31)
+  shortData = shortData.filter(date => !(date.date ==='Invalid date'));
   console.log(shortData)
 
   const calcIncrease = (oldNum, newNum) => {
@@ -73,7 +77,7 @@ export const CountryChart = () => {
               
             </div>
             <ResponsiveContainer Width="99%" aspect={1.9}>
-              <LineChart data={shortData}>
+              <ComposedChart data={shortData}>
                 <XAxis
                   dataKey="date"
                   tick={{ fontSize: "0.7em", fill: "#2C72EA" }}
@@ -93,9 +97,9 @@ export const CountryChart = () => {
                 <Legend />
 
                 <Line type="monotone" dataKey="Cases" stroke="#02B875" />
-                <Line type="monotone" dataKey="NewCases" stroke="#02B875" />
+                <Area type='monotone' dataKey='New Cases' fill='#4682ec' stroke='#4682ec'/>
                 {/* <Line type="monotone" dataKey="Deaths" stroke="#D23430" /> */}
-              </LineChart>
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
           <div className="col-md-12 col-lg-6">
@@ -119,7 +123,7 @@ export const CountryChart = () => {
               )}
             </div>
             <ResponsiveContainer Width="99%" aspect={1.9}>
-              <LineChart data={shortData}>
+              <ComposedChart data={shortData}>
                 <XAxis
                   dataKey="date"
                   tick={{ fontSize: "0.7em", fill: "#2C72EA" }}
@@ -140,8 +144,8 @@ export const CountryChart = () => {
 
                 {/* <Line type="monotone" dataKey="Cases" stroke="#02B875" /> */}
                 <Line type="monotone" dataKey="Deaths" stroke="#D23430" />
-                <Line type="monotone" dataKey="NewDeaths" stroke="#D23430" />
-              </LineChart>
+                <Area type='monotone' dataKey='New Deaths' fill='#4682ec' stroke='#4682ec'/>
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
         </div>
