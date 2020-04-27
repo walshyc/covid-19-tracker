@@ -15,7 +15,7 @@ export const IconButton = ({ country }) => {
         style={{ verticalAlign: "bottom" }}
         className={`flag-icon flag-icon-${country.icon} flag-icon-lg`}
       ></span>{" "}
-      <span className="d-none d-md-block">{country.name}</span>
+      <span className="d-none d-md-block mt-1">{country.name}</span>
       
     </button>
   );
