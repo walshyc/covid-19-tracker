@@ -43,6 +43,7 @@ export const GlobalProvider = ({ children }) => {
 
     let irelandData = [];
     let countiesData = [];
+    let irelandStats=[]
 
     if (res.data.country === "Ireland") {
       irelandData = await axios.get(
@@ -50,13 +51,13 @@ export const GlobalProvider = ({ children }) => {
       );
 
       countiesData = irelandData.data.features.slice(-26);
+      const secondRes = await axios.get(
+        `https://services1.arcgis.com/eNO7HHeQ3rUcBllm/arcgis/rest/services/CovidStatisticsProfileHPSCIrelandOpenData/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json`
+      );
+      irelandStats =
+        secondRes.data.features[secondRes.data.features.length - 1].attributes;
     }
 
-    const secondRes = await axios.get(
-      `https://services1.arcgis.com/eNO7HHeQ3rUcBllm/arcgis/rest/services/CovidStatisticsProfileHPSCIrelandOpenData/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json`
-    );
-    const irelandStats =
-      secondRes.data.features[secondRes.data.features.length - 1].attributes;
 
     dispatch({
       type: "SET_COUNTRY",
