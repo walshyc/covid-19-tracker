@@ -1,16 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import {
-  LineChart,
   Line,
-  Bar,
   XAxis,
   YAxis,
   ResponsiveContainer,
   Tooltip,
   Legend,
   Area,
-  ComposedChart
+  ComposedChart,
 } from "recharts";
 import * as moment from "moment";
 import { FaArrowUp } from "react-icons/fa";
@@ -28,21 +26,21 @@ export const CountryChart = () => {
     for (let key in countryHistory) {
       let cases = countryHistory[key].total_cases;
       let deaths = countryHistory[key].total_deaths;
-      let newCases = countryHistory[key].new_daily_cases
-      let newDeaths = countryHistory[key].new_daily_deaths
+      let newCases = countryHistory[key].new_daily_cases;
+      let newDeaths = countryHistory[key].new_daily_deaths;
 
       data.push({
         date: moment(moment(key, "MM/DD/YYYY").toISOString()).format("D/M"),
         Cases: cases,
         Deaths: deaths,
-        'New Deaths': newDeaths,
-        'New Cases': newCases
+        "New Deaths": newDeaths,
+        "New Cases": newCases,
       });
     }
   }
-  let shortData = data.splice(-31)
-  shortData = shortData.filter(date => !(date.date ==='Invalid date'));
-  console.log(shortData)
+  let shortData = data.splice(-31);
+  shortData = shortData.filter((date) => !(date.date === "Invalid date"));
+  console.log(shortData);
 
   const calcIncrease = (oldNum, newNum) => {
     if (oldNum === 0) {
@@ -74,7 +72,6 @@ export const CountryChart = () => {
                 />
                 %
               </span>
-              
             </div>
             <ResponsiveContainer Width="99%" aspect={1.9}>
               <ComposedChart data={shortData}>
@@ -97,7 +94,12 @@ export const CountryChart = () => {
                 <Legend />
 
                 <Line type="monotone" dataKey="Cases" stroke="#02B875" />
-                <Area type='monotone' dataKey='New Cases' fill='#4682ec' stroke='#4682ec'/>
+                <Area
+                  type="monotone"
+                  dataKey="New Cases"
+                  fill="#4682ec"
+                  stroke="#4682ec"
+                />
                 {/* <Line type="monotone" dataKey="Deaths" stroke="#D23430" /> */}
               </ComposedChart>
             </ResponsiveContainer>
@@ -114,7 +116,10 @@ export const CountryChart = () => {
                 <span className="float-right">
                   <FaArrowUp></FaArrowUp>{" "}
                   <NumberFormat
-                    value={calcIncrease(shortData[0].Deaths, shortData[28].Deaths)}
+                    value={calcIncrease(
+                      shortData[0].Deaths,
+                      shortData[28].Deaths
+                    )}
                     displayType={"text"}
                     thousandSeparator={true}
                   />
@@ -144,7 +149,12 @@ export const CountryChart = () => {
 
                 {/* <Line type="monotone" dataKey="Cases" stroke="#02B875" /> */}
                 <Line type="monotone" dataKey="Deaths" stroke="#D23430" />
-                <Area type='monotone' dataKey='New Deaths' fill='#4682ec' stroke='#4682ec'/>
+                <Area
+                  type="monotone"
+                  dataKey="New Deaths"
+                  fill="#4682ec"
+                  stroke="#4682ec"
+                />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
