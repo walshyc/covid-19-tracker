@@ -20,7 +20,6 @@ export const GlobalTableData = ({ data, index, type }) => {
   return (
     <>
       <tr className="table-light">
-        <th scope="col">{index + 1}</th>
         <th scope="col">
           <span
             style={{ verticalAlign: "bottom" }}

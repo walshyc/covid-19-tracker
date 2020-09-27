@@ -14,11 +14,10 @@ export const GlobalTable = ({ info, type, title }) => {
             </tr>
           </thead>
           <tbody>
-            {info.map((country, index) => {
+            {info.map((country) => {
               return (
                 <GlobalTableData
                   type={type}
-                  index={index}
                   key={country.countryInfo.iso2}
                   data={country}
                 ></GlobalTableData>
