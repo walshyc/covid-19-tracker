@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import NumberFormat from "react-number-format";
+import {GlobalContext} from '../../context/GlobalState'
 
 export const GlobalTableData = ({ data, index, type }) => {
+  const {setCountry} = useContext(GlobalContext)
   let tableType;
   if (type === "cases") {
     tableType = data.cases;
@@ -17,10 +19,14 @@ export const GlobalTableData = ({ data, index, type }) => {
     tableType = data.casesPerOneMillion;
   }
 
+  const handleClick = (e) => {
+    setCountry(e.target.getAttribute('value'));
+  }
+
   return (
     <>
-      <tr className="table-light">
-        <th scope="col">
+      <tr  onClick={handleClick}  className="table-light">
+        <th value={data.countryInfo.iso2} scope="col">
           <span
             style={{ verticalAlign: "bottom" }}
             className={
