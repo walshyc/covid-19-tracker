@@ -8,9 +8,6 @@ export const IconButton = ({ c }) => {
     setCountry(e.target.value);
     getCountryHistory(e.target.value);
     getCountriesHistory();
-    console.log(nation.countryInfo)
-    console.log(c.icon)
-
   };
   return (
     <button

@@ -40,7 +40,6 @@ export const CountryChart = () => {
   }
   let shortData = data.splice(-31);
   shortData = shortData.filter((date) => !(date.date === "Invalid date"));
-  console.log(shortData);
 
   const calcIncrease = (oldNum, newNum) => {
     if (oldNum === 0) {

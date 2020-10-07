@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 export const Continents = () => {
   const { continents, getCountries, changeButton, currentBtn, resetNation } = useContext(GlobalContext);
-  let activeBtn = "All";
+
   const handleClick = (e) => {
     getCountries(e.target.value);
     resetNation()

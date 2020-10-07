@@ -135,7 +135,6 @@ export const GlobalProvider = ({ children }) => {
       payload: filter
     })
 
-    console.log(1)
   }
 
   const getGlobalHistory = async () => {
