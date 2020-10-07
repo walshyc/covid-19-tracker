@@ -5,6 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import { GlobalProvider } from "./context/GlobalState";
 import { CountryForm } from "./components/country/CountryForm";
+import { Continents } from "./components/country/Continents";
 import { Global } from "./components/global/Global";
 import { Country } from "./components/country/Country";
 
@@ -16,6 +17,7 @@ export default function App() {
         <div className="App">
           <Navbar></Navbar>
           <div className="container">
+            <Continents></Continents>
             <CountryForm></CountryForm>
             <Country></Country>
             <Global></Global>

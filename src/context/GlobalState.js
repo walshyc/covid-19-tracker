@@ -9,6 +9,9 @@ const initialState = {
     deaths: "",
   },
   countries: [],
+  continents: [],
+  continent: "",
+  filteredCountries:[],
   countriesHistory: [],
   loading: true,
   global: "",
@@ -17,6 +20,7 @@ const initialState = {
   irlCounties: [],
   irlStats: [],
   iconData: [],
+  currentBtn: "All"
 };
 
 export const GlobalContext = createContext(initialState);
@@ -24,12 +28,21 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
+  const resetNation = () => {
+    setLoading();
+    dispatch({
+      type:"RESET_NATION",
+    })
+  }
+
   const setCountry = async (country) => {
     setLoading();
     const requestOptions = {
       method: "GET",
       redirect: "follow",
     };
+
+    
 
     const res = await axios.get(
       `https://corona.lmao.ninja/v2/countries/${country}`,
@@ -77,7 +90,35 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  const getCountries = async () => {
+  const getCountries = async (area) => {
+    setLoading();
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    let res = await axios.get(
+      `https://corona.lmao.ninja/v2/countries?sort=-country`,
+      requestOptions
+    );
+    let countries = res.data;
+    let continent = "Worldwide";
+    if((area !== "All")){
+      countries = res.data.filter(c => c.continent === area)
+      continent = area;
+    }
+
+    const continents = [...new Set(res.data.map(c => c.continent))]; 
+    continents.splice(continents.length - 1)
+    dispatch({
+      type: "GET_COUNTRIES",
+      payload: [countries, continents, continent]
+      // secondPayload: continents,
+      // third
+    });
+  };
+
+  const filterCountries = async () => {
     setLoading();
     const requestOptions = {
       method: "GET",
@@ -88,11 +129,14 @@ export const GlobalProvider = ({ children }) => {
       `https://corona.lmao.ninja/v2/countries?sort=-country`,
       requestOptions
     );
+    const filter = res.data.filter(c => c.continent === "Asia")
     dispatch({
-      type: "GET_COUNTRIES",
-      payload: res.data,
-    });
-  };
+      type: "FILTER_COUNTRIES",
+      payload: filter
+    })
+
+    console.log(1)
+  }
 
   const getGlobalHistory = async () => {
     setLoading();
@@ -169,6 +213,8 @@ export const GlobalProvider = ({ children }) => {
     return increase;
   };
 
+  const changeButton = (btn) => dispatch({type: "CHANGE_BTN", payload: btn})
+
   const setLoading = () => dispatch({ type: "SET_LOADING" });
   const setLoadingFalse = () => dispatch({ type: "SET_LOADING_FALSE" });
 
@@ -178,6 +224,9 @@ export const GlobalProvider = ({ children }) => {
         nation: state.nation,
         loading: state.loading,
         countries: state.countries,
+        continent: state.continent,
+        continents: state.continents,
+        filteredCountries: state.filteredCountries,
         countriesHistory: state.countriesHistory,
         global: state.global,
         globalHistory: state.globalHistory,
@@ -185,15 +234,19 @@ export const GlobalProvider = ({ children }) => {
         irlCounties: state.irlCounties,
         irlStats: state.irlStats,
         iconData: state.iconData,
+        currentBtn: state.currentBtn,
         getCountries,
         setCountry,
         setLoading,
         setLoadingFalse,
+        filterCountries,
         getGlobalData,
         increaseCalc,
         getGlobalHistory,
+        resetNation,
         getCountryHistory,
         getCountriesHistory,
+        changeButton
       }}
     >
       {children}

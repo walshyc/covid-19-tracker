@@ -11,20 +11,28 @@ export default (state, action) => {
     case "GET_COUNTRIES":
       return {
         ...state,
-        countries: action.payload
+        countries: action.payload[0]
           .sort((a, b) => {
             if (a.country < b.country) {
               return -1;
             } else return 1;
           })
           .slice(0, 300),
-          iconData:action.payload
+        iconData: action.payload[0]
           .sort((a, b) => {
             if (a.cases < b.cases) {
               return -1;
             } else return 1;
           })
           .slice(0, 11),
+        continents: action.payload[1],
+        continent: action.payload[2],
+        loading: false,
+      };
+    case "FILTER_COUNTRIES":
+      return {
+        ...state,
+        filteredCountries: action.payload,
         loading: false,
       };
     case "GET_GLOBAL":
@@ -51,10 +59,21 @@ export default (state, action) => {
         countryHistory: action.payload,
         loading: false,
       };
+    case "CHANGE_BTN":
+      return {
+        ...state,
+        currentBtn: action.payload,
+      };
     case "SET_LOADING":
       return {
         ...state,
         loading: true,
+      };
+    case "RESET_NATION":
+      return {
+        ...state,
+        nation: { countryInfo: { iso2: "" }, country: "" },
+        loading: false,
       };
     case "SET_LOADING_FALSE":
       return {

@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import { GlobalTableData } from "./GlobalTableData";
+import {GlobalContext} from "../../context/GlobalState"
 
 export const GlobalTable = ({ info, type, title }) => {
+  const { continent } = useContext(GlobalContext);
   return (
     <>
 
@@ -9,7 +11,7 @@ export const GlobalTable = ({ info, type, title }) => {
           <thead className="">
             <tr className="table-primary text-uppercase rounded">
               <th scope="col" colSpan="3">
-                {title}
+                {`${continent} ${title}`}
               </th>
             </tr>
           </thead>

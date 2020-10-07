@@ -11,6 +11,7 @@ export const CountryForm = () => {
     nation,
     getGlobalData,
     getCountries,
+    filterCountries,
     getCountryHistory,
     getCountriesHistory,
   } = useContext(GlobalContext);
@@ -24,7 +25,8 @@ export const CountryForm = () => {
 
   useEffect(() => {
     getGlobalData();
-    getCountries();
+    getCountries("All");
+    filterCountries();
     // eslint-disable-next-line
   }, []);
 

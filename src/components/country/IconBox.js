@@ -10,7 +10,7 @@ export const IconBox = ({ countries }) => {
         return -1;
       } else return 1;
     })
-    .slice(0, 11);
+    .slice(0, 12);
   let topArray = [];
 
   topCountries.map((country) => {
@@ -21,11 +21,11 @@ export const IconBox = ({ countries }) => {
     });
     return topArray;
   });
-  topArray.push({
-    code: "irl",
-    name: "Ireland",
-    icon: "ie",
-  });
+  // topArray.push({
+  //   code: "irl",
+  //   name: "Ireland",
+  //   icon: "ie",
+  // });
   
   if(loading){
       return <></>
@@ -41,7 +41,7 @@ export const IconBox = ({ countries }) => {
             : topArray.map((country) => {
                 return (
                   <div className="col-4 col-md-2" key={country.icon}>
-                    <IconButton country={country}></IconButton>
+                    <IconButton c={country}></IconButton>
                   </div>
                 );
               })}
