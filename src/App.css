@@ -13,3 +13,8 @@ button > * {
   visibility: visible!important;
 }}
 
+@media(max-width: 900px) {
+  #drawer {
+      display: none;
+  }
+}

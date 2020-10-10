@@ -7,7 +7,9 @@ import { GlobalProvider } from "./context/GlobalState";
 import { CountryForm } from "./components/country/CountryForm";
 import { Continents } from "./components/country/Continents";
 import { Global } from "./components/global/Global";
-import { Country } from "./components/country/Country";
+import { MainContent } from "./components/country/MainContent";
+import Container from "@material-ui/core/Container";
+
 import {
   createMuiTheme,
   makeStyles,
@@ -15,7 +17,6 @@ import {
 } from "@material-ui/core/styles";
 
 export default function App() {
-
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -23,17 +24,22 @@ export default function App() {
       },
     },
   });
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: "flex",
+    },
+  }));
+
+  const classes = useStyles();
   return (
     <GlobalProvider>
       <ThemeProvider theme={theme}>
         <Router>
           <div className="App">
-            <Navbar></Navbar>
-            <div className="container">
-              <Continents></Continents>
-              <CountryForm></CountryForm>
-              <Country></Country>
-              <Global></Global>
+            <div className={classes.root}>
+              <Navbar></Navbar>
+              <MainContent></MainContent>
             </div>
             <Footer></Footer>
           </div>
