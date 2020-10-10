@@ -11,7 +11,7 @@ const initialState = {
   countries: [],
   continents: [],
   continent: "",
-  filteredCountries:[],
+  filteredCountries: [],
   countriesHistory: [],
   loading: true,
   global: "",
@@ -20,7 +20,8 @@ const initialState = {
   irlCounties: [],
   irlStats: [],
   iconData: [],
-  currentBtn: "All"
+  currentBtn: "All",
+  chartIndex: 0,
 };
 
 export const GlobalContext = createContext(initialState);
@@ -31,9 +32,9 @@ export const GlobalProvider = ({ children }) => {
   const resetNation = () => {
     setLoading();
     dispatch({
-      type:"RESET_NATION",
-    })
-  }
+      type: "RESET_NATION",
+    });
+  };
 
   const setCountry = async (country) => {
     setLoading();
@@ -41,8 +42,6 @@ export const GlobalProvider = ({ children }) => {
       method: "GET",
       redirect: "follow",
     };
-
-    
 
     const res = await axios.get(
       `https://corona.lmao.ninja/v2/countries/${country}`,
@@ -103,16 +102,16 @@ export const GlobalProvider = ({ children }) => {
     );
     let countries = res.data;
     let continent = "Worldwide";
-    if((area !== "All")){
-      countries = res.data.filter(c => c.continent === area)
+    if (area !== "All") {
+      countries = res.data.filter((c) => c.continent === area);
       continent = area;
     }
 
-    const continents = [...new Set(res.data.map(c => c.continent))]; 
-    continents.splice(continents.length - 1)
+    const continents = [...new Set(res.data.map((c) => c.continent))];
+    continents.splice(continents.length - 1);
     dispatch({
       type: "GET_COUNTRIES",
-      payload: [countries, continents, continent]
+      payload: [countries, continents, continent],
       // secondPayload: continents,
       // third
     });
@@ -129,13 +128,12 @@ export const GlobalProvider = ({ children }) => {
       `https://corona.lmao.ninja/v2/countries?sort=-country`,
       requestOptions
     );
-    const filter = res.data.filter(c => c.continent === "Asia")
+    const filter = res.data.filter((c) => c.continent === "Asia");
     dispatch({
       type: "FILTER_COUNTRIES",
-      payload: filter
-    })
-
-  }
+      payload: filter,
+    });
+  };
 
   const getGlobalHistory = async () => {
     setLoading();
@@ -184,8 +182,8 @@ export const GlobalProvider = ({ children }) => {
         `https://api.thevirustracker.com/free-api?countryTimeline=${country}`,
         requestOptions
       );
-      
-      data = res.data.timelineitems[0]
+
+      data = res.data.timelineitems[0];
     } catch (error) {
       // Error 😨
       if (error.response) {
@@ -212,7 +210,14 @@ export const GlobalProvider = ({ children }) => {
     return increase;
   };
 
-  const changeButton = (btn) => dispatch({type: "CHANGE_BTN", payload: btn})
+  const changeIndex = (index) => {
+    dispatch({
+      type: "CHANGE_INDEX",
+      payload: index,
+    });
+  };
+
+  const changeButton = (btn) => dispatch({ type: "CHANGE_BTN", payload: btn });
 
   const setLoading = () => dispatch({ type: "SET_LOADING" });
   const setLoadingFalse = () => dispatch({ type: "SET_LOADING_FALSE" });
@@ -234,6 +239,7 @@ export const GlobalProvider = ({ children }) => {
         irlStats: state.irlStats,
         iconData: state.iconData,
         currentBtn: state.currentBtn,
+        chartIndex: state.chartIndex,
         getCountries,
         setCountry,
         setLoading,
@@ -245,7 +251,8 @@ export const GlobalProvider = ({ children }) => {
         resetNation,
         getCountryHistory,
         getCountriesHistory,
-        changeButton
+        changeButton,
+        changeIndex
       }}
     >
       {children}

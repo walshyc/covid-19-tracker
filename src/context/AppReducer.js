@@ -59,6 +59,11 @@ export default (state, action) => {
         countryHistory: action.payload,
         loading: false,
       };
+    case "CHANGE_INDEX":
+      return {
+        ...state,
+        chartIndex: action.payload,
+      };
     case "CHANGE_BTN":
       return {
         ...state,

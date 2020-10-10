@@ -8,23 +8,37 @@ import { CountryForm } from "./components/country/CountryForm";
 import { Continents } from "./components/country/Continents";
 import { Global } from "./components/global/Global";
 import { Country } from "./components/country/Country";
+import {
+  createMuiTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 
 export default function App() {
-  
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#2E72EA",
+      },
+    },
+  });
   return (
     <GlobalProvider>
-      <Router>
-        <div className="App">
-          <Navbar></Navbar>
-          <div className="container">
-            <Continents></Continents>
-            <CountryForm></CountryForm>
-            <Country></Country>
-            <Global></Global>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <div className="App">
+            <Navbar></Navbar>
+            <div className="container">
+              <Continents></Continents>
+              <CountryForm></CountryForm>
+              <Country></Country>
+              <Global></Global>
+            </div>
+            <Footer></Footer>
           </div>
-          <Footer></Footer>
-        </div>
-      </Router>
+        </Router>
+      </ThemeProvider>
     </GlobalProvider>
   );
 }
